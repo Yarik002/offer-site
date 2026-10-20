@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Оффер — AI-поиск работы для специалистов | Беларусь</title>
+<meta name="description" content="AI-разбор резюме и живой поиск вакансий для специалистов (IT и другие профессии): 20–60 актуальных вакансий с rabota.by/hh.ru и международных площадок, 2 версии резюме, письма и подготовка к интервью. 24–48 часов. Минск, удалённо.">
+<meta property="og:title" content="Оффер — AI-поиск работы для специалистов">
+<meta property="og:description" content="Резюме, вакансии, письма и подготовка к интервью за 24–48 часов. Бесплатный разбор резюме.">
+<meta property="og:image" content="assets/og-image.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#4f6ef7">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<link rel="stylesheet" href="style.css?v=20261020l">
+<style>.choice-modal{position:fixed;inset:0;background:rgba(10,14,30,.55);display:none;align-items:center;justify-content:center;padding:18px;z-index:120}.choice-modal.open{display:flex}.choice-card{background:#fff;border-radius:22px;max-width:600px;width:100%;padding:28px;position:relative}.choice-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}@media(max-width:640px){.choice-actions{grid-template-columns:1fr}}</style>
+<style>
+/* critical header layout: не даём шапке наезжать друг на друга */
+.header .wrap.nav{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:16px;height:70px}
+.header .brand{flex:0 0 auto;white-space:nowrap}
+.header .nav-links{display:flex;flex-wrap:nowrap;white-space:nowrap;gap:18px;min-width:0;font-size:14.5px}
+.header .nav-links a{white-space:nowrap}
+.header .nav-cta{display:flex;flex-wrap:nowrap;align-items:center;gap:8px;flex:0 0 auto}
+.header .nav-cta .btn{white-space:nowrap}
+@media(max-width:1220px){.header .nav-links{display:none}.header .burger{display:block}}
+@media(max-width:980px){.header .nav-cta .btn-ghost{display:none}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img src="assets/logo-256.png" alt="Оффер">Оффер<span style="color:var(--accent)">.</span></a>
+    <nav class="nav-links">
+      <a href="#how">Как работает</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#pay">Оплата</a>
+      <a href="schools.html">Для IT-школ</a>
+      <a href="#faq">Вопросы</a>
+      <a href="support.html">Поддержка</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="order.html">Оформить на сайте</a>
+      <a class="btn btn-primary btn-sm" data-bot href="https://t.me/OfferCareerBot">Открыть бота</a>
+      <button class="burger" id="burger" aria-label="Меню">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#how">Как работает</a>
+    <a href="#pricing">Тарифы</a>
+    <a href="#pay">Оплата</a>
+    <a href="schools.html">Для IT-школ</a>
+    <a href="#faq">Вопросы</a>
+    <a href="demo-report.html">Пример отчёта</a>
+    <a data-bot href="https://t.me/OfferCareerBot" style="color:var(--accent)">Открыть Telegram-бота →</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="badge"><span class="dot"></span>AI-сервис для специалистов · Минск</div>
+        <h1>Оффер ближе,<br>чем <em>кажется</em></h1>
+        <p class="lead">Разбираю резюме, нахожу вакансии под твою профессию — IT и другие — и готовлю письма так, чтобы отвечали. За 24–48 часов, а не за месяц пустых откликов.</p>
+        <div class="cta-row">
+          <a class="btn btn-green btn-lg" data-bot href="https://t.me/OfferCareerBot">🎁 Бесплатный разбор резюме</a>
+          <a class="btn btn-ghost btn-lg" href="order.html">Оформить на сайте</a>
+          <a class="btn btn-ghost btn-lg" href="demo-report.html">Пример отчёта</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat"><b>3 тестовых</b><span>за пару часов после рассылки по системе</span></div>
+          <div class="hstat"><b>20–60</b><span>живых вакансий под вашу роль</span></div>
+          <div class="hstat"><b>24–48 ч</b><span>срок готового пакета</span></div>
+        </div>
+      </div>
+      <div class="report-mock reveal">
+        <div class="rm-top">
+          <div class="rm-brand"><img src="assets/logo-256.png" alt="">Отчёт «Оффер»</div>
+          <div class="rm-score"><div><b>8</b><small>/10</small></div><div style="font-size:12px;color:var(--muted);max-width:110px">готовность к рынку junior</div></div>
+        </div>
+        <div class="rm-row"><div class="ico g">✓</div><div><b>10 правок резюме</b><span>с готовыми формулировками</span></div></div>
+        <div class="rm-row"><div class="ico b">◎</div><div><b>12 вакансий под стек</b><span>со ссылками и причиной выбора</span></div></div>
+        <div class="rm-row"><div class="ico b">✉</div><div><b>Сопроводительное письмо</b><span>под конкретную вакансию</span></div></div>
+        <div class="rm-row"><div class="ico g">?</div><div><b>8 вопросов к интервью</b><span>с подсказками ответов</span><span class="rm-tag" style="margin-left:6px">готово</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:26px">
+        <span class="eyebrow">Данные, а не гадания</span>
+        <h2>Подбор идёт по живым вакансиям</h2>
+        <p>При каждом заказе система в реальном времени собирает вакансии с rabota.by/hh.ru и международных площадок, фильтрует по вашей роли и опыту — и оставляет только подходящие. Никаких «советов из воздуха».</p>
+      </div>
+      <div class="grid g4">
+        <div class="card" style="text-align:center"><h3>rabota.by / hh.ru</h3><p>Беларусь и удалёнка · живой RSS</p></div>
+        <div class="card" style="text-align:center"><h3>Jobicy / Himalayas</h3><p>международный remote · live API</p></div>
+        <div class="card" style="text-align:center"><h3>Фильтр по роли</h3><p>20/40/60 вакансий по тарифу</p></div>
+        <div class="card" style="text-align:center"><h3>ИИ-отбор</h3><p>релевантность и причины выбора</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pain">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Знакомо?</span>
+        <h2>Специалисту не хватает не знаний, а системы</h2>
+        <p>Рынок не отвечает не потому, что ты плохой разработчик. Ты просто делаешь 50 одинаковых откликов вручную.</p>
+      </div>
+      <div class="grid g3">
+        <div class="card reveal"><div class="num">😶</div><h3>50 откликов — 0 ответов</h3><p>Одно резюме летит во все вакансии, HR видит шаблон и проходит мимо.</p></div>
+        <div class="card reveal"><div class="num">🕳</div><h3>Вакансии тонут в мусоре</h3><p>Площадки, чаты, каналы: вручную не переварить. Половина — не твой уровень или офис в другом городе.</p></div>
+        <div class="card reveal"><div class="num">⏳</div><h3>Подготовка съедает недели</h3><p>Резюме, письма, вопросы HR, тестовые — это можно систематизировать и делать в 5 раз быстрее.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Как работает</span>
+        <h2>Ты присылаешь резюме — получаешь готовый пакет</h2>
+        <p>Без курсов, мотивационных речей и «просто попробуй ещё 100 откликов».</p>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Разбор профиля</h3><p>Смотрю стек, проекты, опыт и цель. Честно показываю, где ты проигрываешь конкуренту.</p></div>
+        <div class="step"><h3>Подбор вакансий</h3><p>Прогоняю рынок и отбираю 20–30 вакансий под твой уровень — с причинами, почему подходит.</p></div>
+        <div class="step"><h3>Резюме и письма</h3><p>2 версии резюме + 3 персональных сопроводительных. Ключевые слова для ATS и человеческий язык.</p></div>
+        <div class="step"><h3>Подготовка к HR</h3><p>10 вопросов с твоими ответами, разбор «расскажи о себе», стратегия по зарплате и follow-up.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="demo">
+    <div class="wrap">
+      <div class="demo-card reveal">
+        <div class="demo-left">
+          <span class="eyebrow">Пример результата</span>
+          <h2 style="margin-bottom:14px">Так выглядит отчёт, который получает клиент</h2>
+          <div class="score-badge"><b>8</b> / 10 — готовность к рынку</div>
+          <p style="color:var(--muted)">Оценка профиля, сильные и слабые места, 10 правок резюме, ключевые слова для ATS, 12 вакансий со ссылками, готовое письмо, 8 вопросов к интервью и план на 7 дней.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="demo-report.html">Открыть пример отчёта</a>
+            <a class="btn btn-ghost" data-bot href="https://t.me/OfferCareerBot">Получить свой</a>
+          </div>
+        </div>
+        <div class="demo-right">
+          <img src="assets/og-image.png" alt="Пример отчёта Оффер">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Тарифы</span>
+        <h2>Начни бесплатно, плати за результат</h2>
+        <p>Оплата — картой, через ЕРИП или Telegram Stars. Цены в BYN и в звёздах (для оплаты прямо в Telegram).</p>
+      </div>
+      <div class="pricing-toggle">
+        <button class="active" data-currency="byn">BYN</button>
+        <button data-currency="stars">Telegram Stars ⭐</button>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <div class="pname">Аудит</div>
+          <div class="pdesc">Понять, что улучшить в резюме</div>
+          <div class="price"><span data-price>0</span> <small data-cur>BYN</small></div>
+          <ul><li>10 правок резюме</li><li>5 живых вакансий</li><li>1 переписанное письмо</li><li>Срок: 24 часа</li></ul>
+          <button type="button" class="btn btn-ghost" data-plan-choice="free">Начать бесплатно</button>
+        </div>
+        <div class="plan hot">
+          <div class="pname">Базовый</div>
+          <div class="pdesc">Полный пакет для старта поиска</div>
+          <div class="price"><span data-byn="39" data-stars="250">39</span> <small data-cur>BYN</small></div>
+          <ul><li>20 живых вакансий</li><li>2 версии резюме</li><li>3 сопроводительных</li><li>Шаблоны ответов HR</li><li>Срок: 2 дня</li></ul>
+          <button type="button" class="btn btn-primary" data-plan-choice="base">Выбрать</button>
+          <div class="pay-note">карта · ЕРИП · ⭐ Stars</div>
+        </div>
+        <div class="plan">
+          <div class="pname">Про</div>
+          <div class="pdesc">С сопровождением до интервью</div>
+          <div class="price"><span data-byn="79" data-stars="450">79</span> <small data-cur>BYN</small></div>
+          <ul><li>Всё из «Базового»</li><li>40 живых вакансий</li><li>30 откликов под тебя</li><li>Follow-up по откликам</li><li>Подготовка к интервью</li><li>Срок: 3–4 дня</li></ul>
+          <button type="button" class="btn btn-ghost" data-plan-choice="pro">Выбрать</button>
+          <div class="pay-note">карта · ЕРИП · ⭐ Stars</div>
+        </div>
+        <div class="plan">
+          <div class="pname">VIP</div>
+          <div class="pdesc">2 недели личного сопровождения</div>
+          <div class="price"><span data-byn="149" data-stars="800">149</span> <small data-cur>BYN</small></div>
+          <ul><li>Всё из «Про»</li><li>2 недели сопровождения</li><li>Мок-интервью</li><li>Разбор тестового</li><li>60 живых вакансий</li><li>Помощь с оффером</li></ul>
+          <button type="button" class="btn btn-ghost" data-plan-choice="vip">Выбрать</button>
+          <div class="pay-note">карта · ЕРИП · ⭐ Stars</div>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:18px"><a class="btn btn-primary" href="order.html">Оформить заказ на сайте →</a></p>
+      <p style="text-align:center;color:var(--muted-2);font-size:13px;margin-top:12px">Гарантирую работу и сроки, а не «оффер за 2 недели». Если качество не устроит — верну деньги за пакет.</p>
+    </div>
+  </section>
+
+  <section class="section" id="pay" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Оплата</span>
+        <h2>Три способа — как удобно</h2>
+        <p>Оплата принимается в Беларуси, без посредников и скрытых комиссий.</p>
+      </div>
+      <div class="pay-grid">
+        <div class="pay-card">
+          <div class="pico">💳</div>
+          <b>Перевод на карту</b>
+          <p>Карта МТБ / Беларусбанк. После оплаты присылаешь скриншот в бот — пришлю чек самозанятого из «Профдохода».</p>
+        </div>
+        <div class="pay-card">
+          <div class="pico">🧾</div>
+          <b>ЕРИП</b>
+          <p>Оплата через «Систему расчётов» в приложении банка: перевод по номеру или код услуги. Чек — в «Профдоходе».</p>
+        </div>
+        <div class="pay-card stars">
+          <div class="pico">⭐</div>
+          <b>Telegram Stars</b>
+          <p>Оплата звёздами прямо в боте — в 2 клика, без ввода реквизитов. Приходит чек и подтверждение оплаты.</p>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--muted);font-size:13.5px;margin:18px auto 0;max-width:760px">🔒 Сумма фиксированная: ровно столько, сколько указано в заказе — без обмена и доплат. Мы никогда не просим коды из СМС, данные карты или пароли: только перевод на карту/ЕРИП или оплата Stars внутри Telegram.</p>
+      <div class="steps" style="margin-top:30px">
+        <div class="step"><h3>Выбери пакет в боте</h3><p>Пришли резюме и роль — бот подготовит заказ и покажет точную сумму.</p></div>
+        <div class="step"><h3>Скопируй реквизиты</h3><p>Нажми на номер карты или ЕРИП-счёт в боте — он скопируется. Переведи ровно указанную сумму одним платежом.</p></div>
+        <div class="step"><h3>Пришли скриншот</h3><p>Подтверждение — в течение дня, отчёт придёт в бот. Telegram Stars — автоматически за 1–3 минуты.</p></div>
+        <div class="step"><h3>Получи отчёт и чек</h3><p>После подтверждения приходит HTML-отчёт и чек самозанятого из приложения «Профдоход».</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="schools-teaser">
+    <div class="wrap">
+      <div class="b2b">
+        <span class="eyebrow" style="color:#9fb0ff">B2B</span>
+        <h2>IT-школам и колледжам: AI-центр карьеры</h2>
+        <p>Ваш центр карьеры тратит часы на каждого выпускника. Автоматизируем рутину: каждый студент получает персональный пакет за 24 часа, а вы — отчёт по трудоустройству для аккредитации и маркетинга.</p>
+        <a class="btn btn-primary" href="schools.html">Пилот бесплатно на 10 студентов →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <img class="about-ava" src="assets/logo-256.png" alt="Оффер">
+        <div>
+          <h3>Кто за этим стоит</h3>
+          <p style="color:var(--muted);margin:6px 0 14px">Ярослав Кирдун — Python/AI-разработчик из Минска. Учусь на 3 курсе, пишу на Python: FastAPI, aiogram, парсинг, LLM API. Автор проекта Job_Search_AI — системы, которая находит вакансии, считает релевантность и генерирует документы. С ней я за пару часов получил 3 тестовых в IT-компаниях.</p>
+          <div class="about-links">
+            <a href="https://github.com/Yarik002" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://gitlab.com/Yarik002/deribit-price-service" target="_blank" rel="noopener">GitLab</a>
+            <a href="https://kvarta-landing-psi.vercel.app" target="_blank" rel="noopener">Демо-проект</a>
+            <a data-bot href="https://t.me/OfferCareerBot">Telegram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Вопросы</span><h2>Частые вопросы</h2></div>
+      <div class="faq">
+        <details><summary>Это не просто ChatGPT?</summary><p>ChatGPT — инструмент. Я использую его вместе с собственной системой: база вакансий, скоринг, шаблоны документов и проверка результата. Ты платишь за готовый результат, а не за промпт.</p></details>
+        <details><summary>Гарантируете трудоустройство?</summary><p>Нет, и никто честно не может этого гарантировать. Гарантирую объём работы и сроки: 20–60 живых вакансий (по тарифу), 2 версии резюме, 3 письма, подготовка к HR. Если качество не устроит — верну деньги за пакет.</p></details>
+        <details><summary>Сколько времени занимает?</summary><p>Аудит — 24 часа. Базовый пакет — 2 дня. Про — 3–4 дня. VIP — 2 недели сопровождения.</p></details>
+        <details><summary>Как оплатить?</summary><p>Перевод на карту МТБ/Беларусбанк, через ЕРИП или Telegram Stars прямо в боте. Я работаю как самозанятый (НПД): по каждой оплате выдаю чек в приложении «Профдоход».</p></details>
+        <details><summary>Я не из Беларуси — работаем?</summary><p>Да, удалённо. Я в Минске (UTC+3), подстраиваюсь под твой часовой пояс по созвонам.</p></details>
+        <details><summary>А если у меня нет опыта и проектов?</summary><p>Тогда сначала помогу упаковать учебные проекты и GitHub так, чтобы это выглядело как опыт. Это входит в разбор профиля.</p></details>
+        <details><summary>Где посмотреть статус заказа?</summary><p>В боте команда <b>/my</b> — список заказов и статусы. После оплаты Telegram Stars статус обновляется автоматически.</p></details>        <details><summary>Это только для IT?</summary><p>Нет. Разбор резюме, сопроводительные, вопросы и план — для любой профессии. Для IT-ролей есть готовая база вакансий; для других профессий — ссылки для поиска и стратегия.</p></details>
+        <details><summary>Можно посмотреть отчёт до покупки?</summary><p>Да — <a href="demo-report.html" style="color:var(--accent)">пример отчёта</a>. А бесплатный разбор резюме вообще без оплаты.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="final">
+        <h2>Первый шаг — бесплатный</h2>
+        <p>Пришли резюме в Telegram. За 24 часа верну 10 правок, 5 живых вакансий и одно письмо. Дальше решишь сам.</p>
+        <a class="btn btn-lg" data-bot href="https://t.me/OfferCareerBot">Открыть бота @OfferCareerBot</a>
+        <p style="color:rgba(255,255,255,.9);font-size:13.5px;max-width:560px;margin:16px auto 0">Сайт принимает заявки круглосуточно, даже если бот недоступен. Если бот не отвечает — оставь заявку на <a href="order.html" style="color:#fff;text-decoration:underline">странице оформления</a> или напиши на <a href="mailto:erder101@gmail.com" style="color:#fff;text-decoration:underline">erder101@gmail.com</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:12px"><img src="assets/logo-256.png" alt="">Оффер<span style="color:var(--accent)">.</span></div>
+        <p style="max-width:280px;margin:0">AI-сервис поиска работы для специалистов: IT и другие профессии. Минск, Беларусь · удалённо.</p>
+      </div>
+      <div><b>Сервис</b><a href="#how">Как работает</a><a href="#pricing">Тарифы</a><a href="#pay">Оплата</a><a href="support.html">Поддержка</a><a href="order.html">Оформить на сайте</a><a href="demo-report.html">Пример отчёта</a></div>
+      <div><b>Сотрудничество</b><a href="support.html">Поддержка</a><a href="schools.html">IT-школам</a><a href="oferta.html">Оферта и данные</a><a data-bot href="https://t.me/OfferCareerBot">Telegram-бот</a></div>
+      <div><b>Контакты</b><a href="mailto:erder101@gmail.com">erder101@gmail.com</a><a href="https://t.me/OfferCareerBot" data-bot>@OfferCareerBot</a><a href="https://github.com/Yarik002" target="_blank" rel="noopener">github.com/Yarik002</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ярослав Кирдун. Услуги оказываются как самозанятый (НПД). Не является гарантией трудоустройства.</span>
+      <span>Сделано с AI · <a href="oferta.html" style="display:inline;color:var(--muted)">Оферта</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="choice-modal" id="choiceModal" aria-hidden="true">
+  <div class="choice-card" role="dialog" aria-modal="true" aria-labelledby="choiceTitle">
+    <button type="button" class="choice-close" id="choiceClose" aria-label="Закрыть">×</button>
+    <span class="eyebrow">Оформление</span>
+    <h3 id="choiceTitle">Как оформить заказ?</h3>
+    <p id="choiceSub" style="color:var(--muted);margin:6px 0 0">Выбери удобный способ — результат одинаковый.</p>
+    <div class="choice-actions">
+      <a class="choice-option" id="choiceSite" href="order.html">
+        <span class="choice-ico">💻</span>
+        <b>Оформить на сайте</b>
+        <small>Карта или ЕРИП, резюме пришлёшь в Telegram. Без установки приложений.</small>
+      </a>
+      <a class="choice-option tg" id="choiceBot" href="https://t.me/OfferCareerBot">
+        <span class="choice-ico">✈️</span>
+        <b>Оформить в Telegram</b>
+        <small>Карта, ЕРИП или Stars — оплата прямо в боте, отчёт придёт в чат.</small>
+      </a>
+    </div>
+    <div class="choice-note">🔒 Фиксированная сумма · чек самозанятого · данные не передаются третьим лицам</div>
+  </div>
+</div>
+
+<script src="script.js?v=20261020l"></script>
+<script>
+(function () {
+  var modal = document.getElementById("choiceModal");
+  if (!modal) return;
+  var title = document.getElementById("choiceTitle");
+  var sub = document.getElementById("choiceSub");
+  var siteLink = document.getElementById("choiceSite");
+  var botLink = document.getElementById("choiceBot");
+  var closeBtn = document.getElementById("choiceClose");
+  var plans = {
+    free: ["Бесплатный аудит", "0 BYN"],
+    base: ["Базовый", "39 BYN"],
+    pro: ["Про", "79 BYN"],
+    vip: ["VIP", "149 BYN"]
+  };
+  var lastFocus = null;
+  function open(plan) {
+    var p = plans[plan] || plans.base;
+    title.textContent = "Пакет «" + p[0] + "» — как оформить?";
+    sub.textContent = "Стоимость: " + p[1] + ". Выбери удобный способ — результат одинаковый.";
+    siteLink.href = "order.html?plan=" + plan;
+    botLink.href = "https://t.me/OfferCareerBot?start=" + (plan === "free" ? "free_audit" : "buy_" + plan);
+    lastFocus = document.activeElement;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    setTimeout(function () { try { siteLink.focus(); } catch (e) {} }, 60);
+  }
+  function close() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (lastFocus) { try { lastFocus.focus(); } catch (e) {} }
+  }
+  document.querySelectorAll("[data-plan-choice]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      open(el.getAttribute("data-plan-choice"));
+    });
+  });
+  closeBtn.addEventListener("click", close);
+  modal.addEventListener("click", function (e) { if (e.target === modal) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+  document.querySelectorAll("#choiceSite, #choiceBot").forEach(function (a) {
+    a.addEventListener("click", function () { setTimeout(close, 80); });
+  });
+})();
+</script>
+</body>
+</html>

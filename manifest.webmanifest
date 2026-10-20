@@ -1,0 +1,13 @@
+{
+  "name": "Оффер — AI-поиск работы",
+  "short_name": "Оффер",
+  "description": "AI-разбор резюме и подбор вакансий для junior-разработчиков",
+  "start_url": "/offer-site/",
+  "display": "standalone",
+  "background_color": "#f7f8fc",
+  "theme_color": "#4f6ef7",
+  "icons": [
+    { "src": "assets/favicon.png", "sizes": "64x64", "type": "image/png" },
+    { "src": "assets/logo-256.png", "sizes": "256x256", "type": "image/png" }
+  ]
+}

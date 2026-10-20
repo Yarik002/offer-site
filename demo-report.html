@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пример отчёта «Оффер»</title>
+<style>
+  :root{--ink:#161b2e;--muted:#5b6478;--line:#e5e8f0;--accent:#4f6ef7;--green:#16a34a;--red:#dc2626;--bg:#f6f7fb}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55}
+  .page{max-width:880px;margin:0 auto;padding:34px 26px 60px;background:#fff}
+  .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:26px}
+  .brand{font-weight:800;font-size:22px;letter-spacing:.3px}
+  .brand span{color:var(--accent)}
+  .meta{text-align:right;color:var(--muted);font-size:13px}
+  h1{font-size:26px;margin:0 0 4px}
+  h2{font-size:19px;margin:34px 0 12px;padding-left:11px;border-left:5px solid var(--accent)}
+  .score-row{display:flex;gap:18px;align-items:center;background:#f8f9ff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:18px 0}
+  .score{font-size:40px;font-weight:800;color:var(--accent);min-width:86px;text-align:center}
+  .score small{display:block;font-size:12px;color:var(--muted);font-weight:600}
+  .summary{flex:1}
+  .chip{display:inline-block;background:#eef1ff;color:#3346c9;border-radius:999px;padding:5px 11px;font-size:13px;margin:3px 4px 3px 0}
+  .chip.bad{background:#fff1f1;color:#b91c1c}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .box{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .box h3{margin:0 0 8px;font-size:15px}
+  ul{margin:6px 0 0 18px;padding:0}
+  li{margin:5px 0}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+  th,td{text-align:left;border-bottom:1px solid var(--line);padding:9px 8px;vertical-align:top}
+  th{background:#f8f9fc;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  .fix{font-weight:600;color:#1d4ed8}
+  .vac a{color:#1d4ed8;text-decoration:none}
+  .vac a:hover{text-decoration:underline}
+  .vac small{color:var(--muted)}
+  .letter{background:#f8f9ff;border:1px dashed #b9c4f5;border-radius:12px;padding:16px 18px;white-space:pre-wrap;font-size:14.5px}
+  .qa{border-bottom:1px solid var(--line);padding:11px 0}
+  .qa b{display:block;margin-bottom:4px}
+  .qa span{color:var(--muted);font-size:14px}
+  .steps li{margin:6px 0}
+  .footer{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:12.5px}
+  @media(max-width:700px){.cols{grid-template-columns:1fr}.top{flex-direction:column}.meta{text-align:left}}
+  @media print{body{background:#fff}.page{max-width:none;padding:0}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top">
+    <div>
+      <div class="brand">Оффер<span>.</span></div>
+      <div style="color:var(--muted);font-size:13px">AI-разбор резюме и подбор вакансий</div>
+    </div>
+    <div class="meta">19.10.2026<br>Junior Python Backend / AI Automation<br>Минск / удалённо</div>
+  </div>
+
+  <h1>Кандидат, junior Python</h1>
+  <div style="color:var(--muted)">Цель: Junior Python Backend / AI Automation · Минск / удалённо</div>
+
+  <div class="score-row">
+    <div class="score">8<small>из 10</small></div>
+    <div class="summary">Профиль соответствует уровню сильного Junior Python Backend: есть 1,5+ года практической разработки, FastAPI, PostgreSQL, Docker, очереди задач, интеграции внешних API и покрытые тестами проекты. Наиболее убедительно кандидат выглядит на позициях Python Backend и AI Automation, а проекты с биллингом, LLM API, OCR и транскрибацией хорошо отвечают вакансиям из списка. Основной риск — отсутствие в резюме подтверждённого production-опыта, CI/CD, observability и формального описания результатов; при доработке материалов шансы на junior-отклики высокие.</div>
+  </div>
+
+  <div class="cols">
+    <div class="box"><h3>✅ Сильные стороны</h3><ul><li>1 год 9 месяцев практической Python-разработки с реальными проектами в финтехе, ботах и автоматизации</li><li>Уверенное владение FastAPI, PostgreSQL, SQLAlchemy 2.0, Alembic и проектированием REST API</li><li>Есть опыт фоновых задач, Celery Beat, Redis, интеграции API, retry и exponential backoff</li><li>Реализованы Telegram-боты с платежами, подписками, распознаванием чеков и LLM-функциями</li><li>Практический DevOps-контекст: Docker Compose, Linux, Nginx, PostgreSQL, Redis и развёртывание на VPS</li><li>Хорошая тестовая культура: 100+ unit-тестов, интеграционные тесты, fixtures, mocks и линтеры</li><li>Есть публичные репозитории с проектами, непосредственно релевантными backend- и AI-разработке</li></ul></div>
+    <div class="box"><h3>⚠️ Слабые места</h3><ul><li>Не указано, работали ли проекты с реальной пользовательской нагрузкой и каким был production-мониторинг</li><li>В резюме не описаны CI/CD-процессы: проверка тестов, линтеров и сборка образов в GitHub Actions или GitLab CI</li><li>AI-опыт описан через конкретные API, но отсутствуют подробности о prompt engineering, оценке качества и ограничении токенов</li><li>Не выделено достижения с бизнес-эффектом: сколько пользователей, запросов, транзакций или сэкономленного времени</li><li>Нет ясного распределения времени между коммерческой разработкой, фрилансом и учебными проектами</li><li>Технологический уровень Python, SQL и Linux не подтверждён независимой оценкой или профессиональным английским</li></ul></div>
+  </div>
+
+  <h2>Правки резюме</h2>
+  <table>
+    <thead><tr><th style="width:22%">Где</th><th style="width:34%">Проблема</th><th>Что сделать</th></tr></thead>
+    <tbody><tr><td>Заголовок и блок «О себе»</td><td>Заголовок «Junior+» и перечисление технологий не показывают основную специализацию, масштаб проектов и подходящую роль.</td><td class='fix'>Python Backend Developer | FastAPI · PostgreSQL · Docker · AI Automation
+
+Разработчик Python с 1,5+ годами практического опыта в backend-разработке, интеграции внешних API и автоматизации процессов. Создаю REST API на FastAPI, проектирую схемы PostgreSQL, подключаю очереди Celery/Redis и разворачиваю сервисы через Docker Compose. Разрабатываю Telegram-ботов с биллингом и LLM-функциями, включая распознавание чеков и транскрибацию аудио. Ищу постоянную удалённую позицию Junior Python Backend / AI Automation.</td></tr><tr><td>Раздел «Опыт работы»</td><td>Должность и период не показывают клиентов, характер проектов и реальную занятость; формулировка «1 год 9 месяцев» будет быстро устаревать.</td><td class='fix'>Python Backend Developer (контрактная разработка) | Январь 2024 — настоящее время
+
+Разрабатывал backend-сервисы, Telegram-ботов и интеграции для задач финтеха, учёта и AI-автоматизации. Отвечал за проектирование API и схем PostgreSQL, подключение внешних сервисов, фоновые задачи, тестирование и контейнеризацию.</td></tr><tr><td>Пункт о тестах в опыте работы</td><td>Формулировка «100+ unit-тестов» не раскрывает охват и может восприниматься как преувеличение, поскольку в проекте указаны также интеграционные тесты.</td><td class='fix'>Разработал и поддерживал 100+ автоматизированных тестов бизнес-логики и API на pytest, включая fixtures, mocks и интеграционные сценарии с взаимодействием с базой данных. В проекте Deribit Price Service тесты проверяют расчёт котировок, фильтрацию по датам и обработку ошибочных сценариев.</td></tr><tr><td>Пункт об интеграциях API</td><td>Ключевой AI-опыт перечислен без конкретики: неясно, какие задачи решались, какие модели использовались и как контролировались ошибки.</td><td class='fix'>Интегрировал Gemini Vision API для распознавания чеков и преобразования изображений в структурированные данные, а Groq API с моделью Llama — для суммаризации расшифровки голосовых сообщений. Реализовал обработку ошибок HTTP-запросов, retry и exponential backoff.</td></tr><tr><td>Пункт о контейнеризации</td><td>Не указаны роль в инфраструктуре, способ запуска и эксплуатационные компоненты.</td><td class='fix'>Разрабатывал Dockerfile и docker-compose для API, Celery Worker, Celery Beat, PostgreSQL и Redis. Разворачивал сервисы на VPS под Ubuntu/Debian, настраивал обратный прокси через Nginx и переменные окружения для подключения к внешним API.</td></tr><tr><td>Проект «Deribit Price Service»</td><td>Проект хорошо раскрывает архитектуру, но не содержит измеримого результата и не показывает порядок работы с данными.</td><td class='fix'>Deribit Price Service — сервис сбора и хранения котировок BTC и ETH
+
+Реализовал фоновое обновление цен раз в минуту через Celery Beat, хранение котировок в PostgreSQL с типом Numeric(18,8) и REST API для получения текущей цены и истории за период. Спроектировал многослойную архитектуру, Alembic-миграции и 100+ unit- и интеграционных тестов. Стек: Python, FastAPI, Celery, Redis, PostgreSQL, SQLAlchemy 2.0, Docker Compose, pytest.</td></tr><tr><td>Проект «AI Expense Tracker»</td><td>Описание перегружено архитектурными терминами, но не объясняет пользовательский сценарий и ключевые AI-компоненты.</td><td class='fix'>AI Expense Tracker — Telegram-бот для учёта расходов по фотографии чека
+
+Реализовал полный цикл обработки: загрузка фото, распознавание реквизитов через Gemini Vision API, преобразование результата в JSON и сохранение расхода в PostgreSQL. Добавил подписки и оплату через Telegram Stars API, отчёты в Excel и CSV, Repository pattern и Docker Compose.</td></tr><tr><td>Проект «PVH Service»</td><td>Стек содержит Node.js и Jest без объяснения границ ответственности, что может создать впечатление неясного уровня владения языками.</td><td class='fix'>PVH Service — backend складского учёта пункта выдачи заказов
+
+Разрабатывал API приёмки, адресного хранения и выдачи отправлений, ролевую модель доступа и JWT-авторизацию. Python-часть включала валидацию входных схем и серверные сценарии; тесты для Python-части написаны на pytest. Интеграционный JavaScript-контур использовал Node.js и Jest.</td></tr><tr><td>Проект «Voice Summary Bot»</td><td>Не раскрыты ограничения production-решения и надёжность обработки аудио.</td><td class='fix'>Voice Summary Bot — бот для транскрибации и суммаризации голосовых сообщений
+
+Организовал полный конвейер: приём голосового сообщения, конвертация аудио через ffmpeg, распознавание речи, передача текста в Groq API с моделью Llama и формирование краткого резюме. Использовал aiogram 3, pydub, Python 3 и Pydantic; предусмотрел удаление временных файлов после обработки.</td></tr><tr><td>Раздел «Технические навыки» и новый блок</td><td>Навыки перечислены без привязки к опыту, а CI/CD, наблюдаемость и качество эксплуатации не отражены.</td><td class='fix'>Отделить Core-компетенции от дополнительных инструментов и добавить блок «Инструменты разработки»: Git, GitHub, GitLab, Postman, Swagger/OpenAPI, pytest, ruff, mypy. В перечень не добавлять CI/CD, Docker Registry, Prometheus или Grafana, пока они фактически не использованы; сначала внедрить их в учебный проект.</td></tr></tbody>
+  </table>
+
+  <h2>Чего не хватает в тексте (ключевые слова для ATS)</h2>
+  <div><span class='chip'>CI/CD</span><span class='chip'>GitHub Actions</span><span class='chip'>GitLab CI/CD</span><span class='chip'>OpenAI API</span><span class='chip'>prompt engineering</span><span class='chip'>RAG</span><span class='chip'>vector databases</span><span class='chip'>WebSocket</span><span class='chip'>OAuth 2.0</span><span class='chip'>RabbitMQ</span><span class='chip'>Kubernetes</span><span class='chip'>observability</span><span class='chip'>Prometheus</span><span class='chip'>structured logging</span><span class='chip'>feature flags</span></div>
+
+  <h2>Вакансии, которые тебе подходят</h2>
+  <div class="vac"><div style='margin:10px 0;padding:10px 12px;border:1px solid #e5e8f0;border-radius:10px'><a href='https://rabota.by/vacancy/138386314' target='_blank' rel='noopener'><b>Python Backend Разработчик (Junior+)</b></a> — Простые Решения · от 300 USD · Минск <small>· совпадение 38.3</small><div style='font-size:13px;color:#5b6478;margin-top:4px'>Совпало: python, fastapi, aiogram, postgresql, docker, postgres, sqlalchemy, бот</div></div><div style='margin:10px 0;padding:10px 12px;border:1px solid #e5e8f0;border-radius:10px'><a href='https://hh.ru/vacancy/137831549' target='_blank' rel='noopener'><b>Python backend-разработчик (AI voice agents)</b></a> — Альвента · 80000-120000 RUR · Москва <small>· совпадение 25.8</small><div style='font-size:13px;color:#5b6478;margin-top:4px'>Совпало: python, fastapi, llm, postgresql, asyncio, postgres, бот, pytest</div></div><div style='margin:10px 0;padding:10px 12px;border:1px solid #e5e8f0;border-radius:10px'><a href='https://hh.ru/vacancy/137959823' target='_blank' rel='noopener'><b>Python-разработчик</b></a> — Rocket Science · от 140000 RUR · Ростов-на-Дону <small>· совпадение 21.8</small><div style='font-size:13px;color:#5b6478;margin-top:4px'>Совпало: python, fastapi, postgresql, postgres, бот, sql, api, redis</div></div><div style='margin:10px 0;padding:10px 12px;border:1px solid #e5e8f0;border-radius:10px'><a href='https://hh.ru/vacancy/137749736' target='_blank' rel='noopener'><b>Python developer</b></a> — КОМТЕК · 80000-160000 RUR · Севастополь <small>· совпадение 21.0</small><div style='font-size:13px;color:#5b6478;margin-top:4px'>Совпало: python, автоматиз, postgresql, postgres, бот, django, sql, rest</div></div><div style='margin:10px 0;padding:10px 12px;border:1px solid #e5e8f0;border-radius:10px'><a href='https://hh.ru/vacancy/138377011' target='_blank' rel='noopener'><b>Веб разработчик (Fullstack)</b></a> — Группа компаний НВМ · от 170000 RUR · Краснодар <small>· совпадение 20.5</small><div style='font-size:13px;color:#5b6478;margin-top:4px'>Совпало: python, автоматиз, postgresql, postgres, бот, sql, api, rest</div></div><div style='margin:10px 0;padding:10px 12px;border:1px solid #e5e8f0;border-radius:10px'><a href='https://hh.ru/vacancy/138470761' target='_blank' rel='noopener'><b>Разработчик AI-автоматизации и аналитики (AI Automation Engineer / Python &amp; Data Developer/e-com)</b></a> — Art Family · 100000-150000 RUR · Москва <small>· совпадение 19.8</small><div style='font-size:13px;color:#5b6478;margin-top:4px'>Совпало: python, automation, автоматиз, llm, бот, sql, api, ai</div></div><div style='margin:10px 0;padding:10px 12px;border:1px solid #e5e8f0;border-radius:10px'><a href='https://hh.ru/vacancy/138566583' target='_blank' rel='noopener'><b>QA Engineer</b></a> — Brandquad · не указана · Волгоград <small>· совпадение 19.5</small><div style='font-size:13px;color:#5b6478;margin-top:4px'>Совпало: python, автоматиз, docker, бот, sql, api, linux, тестир</div></div><div style='margin:10px 0;padding:10px 12px;border:1px solid #e5e8f0;border-radius:10px'><a href='https://rabota.by/vacancy/138445390' target='_blank' rel='noopener'><b>Maintenance Engineer / L2 Support Specialist</b></a> — Мобильная аналитика · не указана · Минск <small>· совпадение 18.8</small><div style='font-size:13px;color:#5b6478;margin-top:4px'>Совпало: python, postgresql, postgres, django, sql, api, ai</div></div><div style='margin:10px 0;padding:10px 12px;border:1px solid #e5e8f0;border-radius:10px'><a href='https://hirify.me/jobs/1204944-fullstack-razrabotcik-python' target='_blank' rel='noopener'><b>Fullstack разработчик (Python)</b></a> —  · не указана · remote <small>· совпадение 18.3</small><div style='font-size:13px;color:#5b6478;margin-top:4px'>Совпало: python, postgresql, postgres, бот, sql, api, rest, redis</div></div><div style='margin:10px 0;padding:10px 12px;border:1px solid #e5e8f0;border-radius:10px'><a href='https://hh.ru/vacancy/138562587' target='_blank' rel='noopener'><b>AI Automation Developer</b></a> — Юркевич Игорь Иванович · 900-1300 USD · Пенза <small>· совпадение 17.8</small><div style='font-size:13px;color:#5b6478;margin-top:4px'>Совпало: python, automation, автоматиз, бот, api, linux, ai</div></div><div style='margin:10px 0;padding:10px 12px;border:1px solid #e5e8f0;border-radius:10px'><a href='https://hh.ru/vacancy/136605051' target='_blank' rel='noopener'><b>Junior Software Development Engineer in Test (Quality &amp; AI focus)</b></a> — Gear Games · не указана · Санкт-Петербург <small>· совпадение 17.8</small><div style='font-size:13px;color:#5b6478;margin-top:4px'>Совпало: python, автоматиз, бот, junior, ai, тестир, git</div></div><div style='margin:10px 0;padding:10px 12px;border:1px solid #e5e8f0;border-radius:10px'><a href='https://hh.ru/vacancy/138343429' target='_blank' rel='noopener'><b>DevOps-инженер (Сопровождение проекта, мониторинг, бэкапы)</b></a> — Карго Линк · 180000-200000 RUR · Москва <small>· совпадение 17.5</small><div style='font-size:13px;color:#5b6478;margin-top:4px'>Совпало: python, postgresql, docker, postgres, бот, sql, linux</div></div></div>
+
+  <h2>Сопроводительное письмо (готово к отправке)</h2>
+  <div class="letter">Здравствуйте! Меня заинтересовала вакансия Python Backend Разработчика в компании «Простые Решения». Я разрабатываю backend-сервисы на Python более полутора лет: создаю REST API на FastAPI, проектирую схемы PostgreSQL, подключаю Celery и Redis, интегрирую внешние API и разворачиваю приложения через Docker Compose на Linux-серверах. В портфолио есть сервис сбора котировок с 100+ unit- и интеграционными тестами, а также Telegram-боты с биллингом и AI-функциями. Привык разделять код на слои, валидировать данные через Pydantic, обрабатывать ошибки и документировать API через Swagger/OpenAPI. Готов выполнить тестовое задание и обсудить задачи команды. Работаю из Минска, готов к удалённой работе в UTC+3.</div>
+
+  <h2>Подготовка к интервью</h2>
+  <div><div class='qa'><b>1. Расскажите о проекте Deribit Price Service: какие задачи он решает и как устроен backend?</b><span>Объясните бизнес-цель, REST-маршруты, слои приложения, PostgreSQL, Alembic, Celery Beat и Docker Compose. Приведите конкретный пример теста и не называйте проект декоративным пет-проектом.</span></div><div class='qa'><b>2. Как в FastAPI реализованы валидация данных, обработка ошибок и документирование API?</b><span>Назовите Pydantic v2, response-модели, обработчики исключений и автоматическую генерацию Swagger/OpenAPI. Приведите кодовый пример единого формата ошибки.</span></div><div class='qa'><b>3. Почему в проекте используется Celery, а не только asyncio?</b><span>Объясните разделение асинхронного HTTP-приёма и фоновых задач, роль Redis как брокера, Celery Beat как планировщика и необходимость повторных попыток. Свяжите это с периодическим сбором котировок.</span></div><div class='qa'><b>4. Как вы спроектировали хранение котировок и защитили данные от потери точности?</b><span>Расскажите о Numeric(18,8), типах полей, индексах, миграциях Alembic и выборе PostgreSQL вместо float. Желательно объяснить, какие запросы и индексы оптимизировались.</span></div><div class='qa'><b>5. Как тестируете FastAPI-приложение и внешние API?</b><span>Разделите unit-тесты бизнес-логики, интеграционные тесты с БД и моки HTTP-клиентов. Назовите fixtures, mocks, TestClient или async-клиент, pytest и контроль покрытия, если он действительно использовался.</span></div><div class='qa'><b>6. Как устроен AI Expense Tracker и как вы обеспечиваете предсказуемость результата модели?</b><span>Опишите загрузку фото, Gemini Vision API, JSON-схему, Pydantic-валидацию, сохранение в PostgreSQL и обработку ошибок. Если ограничивали промпт или проверяли поля ответа, приведите конкретный пример.</span></div><div class='qa'><b>7. Как вы разворачивали Docker Compose-приложение на VPS?</b><span>Расскажите про Dockerfile, сервисы API/Worker/PostgreSQL/Redis, переменные окружения, Nginx, миграции и логи. Отдельно поясните, как безопасно хранить секреты и что делаете после сбоя контейнера.</span></div><div class='qa'><b>8. Что нового изучили за последний год и где применили это в коде?</b><span>Выберите одну технологию из SQLAlchemy 2.0, asyncio, Pydantic v2 или Celery и покажите конкретное отличие от предыдущего подхода. Полезно упомянуть официальную документацию и реальный результат изменения.</span></div></div>
+
+  <h2>План на 7 дней</h2>
+  <ol class="steps"><li>Переписать резюме по предложенным формулировкам, добавить дату отклика и проверить актуальность длительности опыта.</li><li>Добавить в Deribit Price Service CI-пайплайн в GitLab CI: тесты, ruff, mypy и сборку Docker-образа; перед добавлением в резюме проверить, что пайплайн действительно работает.</li><li>Подготовить README для Deribit Price Service: архитектурная схема, команды запуска, описание API, миграций, тестирования и известных ограничений.</li><li>Выпустить второй небольшой OpenAPI-сервис с OpenAI API, JSON-ответом Pydantic, retry, rate-limit обработкой и тестами с mock-ответами.</li><li>Собрать для AI Expense Tracker короткий технический кейс: схема БД, API или сценарий бота, prompt, валидация JSON, billing flow и два теста.</li><li>Провести пробное junior-интервью: письменно ответить на 8 вопросов, затем записать ответы на видео и убрать неконкретные формулировки.</li><li>Разобрать требования первой вакансии и оформить соответствие по ключевым словам Python, FastAPI, PostgreSQL, Docker, REST, SQLAlchemy, Celery, Redis и тестирование.</li><li>Отправить 5–7 точечных откликов в порядке приоритета, а через 2–3 дня внести ещё 2–3 локальные правки в резюме на основе требований вакансий.</li></ol>
+
+  <div class="footer">
+    Отчёт подготовлен сервисом «Оффер» · Telegram: Telegram скрыт · github.com/Yarik002<br>
+    Отчёт носит рекомендательный характер и не гарантирует трудоустройство. Проверяй актуальность вакансий перед откликом.
+  </div>
+</div>
+</body>
+</html>

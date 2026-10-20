@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Поддержка — Оффер</title>
+<meta name="description" content="Поддержка сервиса «Оффер»: чат в Telegram, email, частые вопросы.">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="stylesheet" href="style.css">
+<style>
+.support-hero{padding:54px 0 20px;text-align:center}
+.support-hero h1{font-size:clamp(28px,4vw,44px);margin:8px 0 12px}
+.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0 30px}
+.support-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:8px}
+.support-card .ico{font-size:28px}
+.support-card h3{margin:4px 0 2px;font-size:18px}
+.support-card p{color:var(--muted);margin:0;font-size:14px;line-height:1.5}
+.support-card .btn{margin-top:auto;align-self:flex-start}
+.support-note{background:#f8f9ff;border:1px dashed #b9c4f5;border-radius:14px;padding:16px 18px;color:var(--muted);font-size:13.5px;line-height:1.6}
+.support-faq{max-width:760px;margin:26px auto 0}
+@media(max-width:720px){.support-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img src="assets/logo-256.png" alt="Оффер">Оффер<span style="color:var(--accent)">.</span></a>
+    <nav class="nav-links">
+      <a href="index.html#how">Как работает</a>
+      <a href="index.html#pricing">Тарифы</a>
+      <a href="support.html" style="color:var(--accent)">Поддержка</a>
+      <a href="index.html#faq">Вопросы</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="index.html">На главную</a>
+      <a class="btn btn-primary btn-sm" data-bot href="https://t.me/OfferCareerBot">Бот</a>
+      <button class="burger" id="burger" aria-label="Меню">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Главная</a>
+    <a href="index.html#pricing">Тарифы</a>
+    <a href="support.html" style="color:var(--accent)">Поддержка</a>
+    <a data-bot href="https://t.me/OfferCareerBot">Открыть бота →</a>
+  </div>
+</header>
+
+<main>
+  <section class="support-hero">
+    <div class="wrap">
+      <span class="eyebrow">Поддержка</span>
+      <h1>Напиши — помогу</h1>
+      <p class="lead" style="max-width:620px;margin:0 auto">Вопрос по заказу, оплате, резюме или отчёту? Напиши в чат — отвечу лично. Обычно в течение дня.</p>
+    </div>
+  </section>
+  <div class="wrap">
+    <div class="support-grid">
+      <div class="support-card">
+        <div class="ico">💬</div>
+        <h3>Чат поддержки</h3>
+        <p>Открой чат в Telegram: история переписки сохраняется, ответ придёт туда же. Это личный чат только со мной.</p>
+        <a class="btn btn-primary" data-bot href="https://t.me/OfferCareerBot?start=support">Открыть чат</a>
+      </div>
+      <div class="support-card">
+        <div class="ico">✉️</div>
+        <h3>Email</h3>
+        <p>Если удобнее письмом — напиши на erder101@gmail.com. Приложи номер заказа, если он уже есть.</p>
+        <a class="btn btn-ghost" href="mailto:erder101@gmail.com?subject=Поддержка%20Оффер">Написать на email</a>
+      </div>
+      <div class="support-card">
+        <div class="ico">✈️</div>
+        <h3>Telegram</h3>
+        <p>Мой личный Telegram: @usernaaamer. Можно написать напрямую, если чат-бот недоступен.</p>
+        <a class="btn btn-ghost" href="https://t.me/usernaaamer" target="_blank" rel="noopener">@usernaaamer</a>
+      </div>
+      <div class="support-card">
+        <div class="ico">📄</div>
+        <h3>Заказ и оплата</h3>
+        <p>Статус заказа — в боте: /my. Оплата картой/ЕРИП подтверждается вручную после проверки банка; Stars — автоматически.</p>
+        <a class="btn btn-ghost" data-bot href="https://t.me/OfferCareerBot">Открыть бота</a>
+      </div>
+    </div>
+    <div class="support-note">
+      🔒 Чат поддержки доступен только мне: сообщения сохраняются в защищённой админ-панели. Бот никогда не просит коды из СМС, данные карты или пароли.
+    </div>
+    <div class="support-faq">
+      <div class="section-head"><span class="eyebrow">Быстрые ответы</span><h2>Частые вопросы</h2></div>
+      <div class="faq">
+        <details><summary>Где посмотреть статус заказа?</summary><p>В боте команда <b>/my</b> — список заказов и статусы.</p></details>
+        <details><summary>Сколько ждать ответ поддержки?</summary><p>Обычно в течение дня. Если срочно — напиши в Telegram @usernaaamer.</p></details>
+        <details><summary>Как оплатить?</summary><p>Карта МТБ, ЕРИП или Telegram Stars. Реквизиты приходят в боте, сумма фиксированная.</p></details>
+        <details><summary>Можно вернуть деньги?</summary><p>Если работа не начата — да. Если отчёт передан — бесплатные правки; условия в <a href="oferta.html" style="color:var(--accent)">оферте</a>.</p></details>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-bottom"><span>© 2026 Ярослав Кирдун. Услуги оказываются как самозанятый (НПД).</span><span><a href="index.html" style="display:inline;color:var(--muted)">На главную</a></span></div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

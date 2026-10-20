@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Оффер · Админ-панель</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:#f4f6fc;--card:#fff;--ink:#141a30;--muted:#67708d;--line:#e3e7f2;--accent:#4f6ef7;--green:#16a34a;--red:#dc2626;--yellow:#b45309}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:14px;padding-bottom:40px}
+.header{position:sticky;top:0;z-index:30;background:#10162b;color:#fff;display:flex;align-items:center;gap:10px;padding:12px 14px}
+.header b{font-size:16px}.header b span{color:#7c9bff}.header .sp{flex:1}
+.header button{background:#222c52;color:#fff;border:1px solid #33406e;border-radius:9px;padding:8px 11px;font-size:13px;cursor:pointer}
+.wrap{max-width:1080px;margin:0 auto;padding:14px 12px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.kpi b{display:block;font-size:21px;letter-spacing:-.02em}.kpi span{color:var(--muted);font-size:11.5px}
+.kpi.g b{color:var(--green)}.kpi.a b{color:var(--accent)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.panel h2{font-size:15px;margin:0 0 10px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.toolbar input,.toolbar select{padding:9px 11px;border:1px solid var(--line);border-radius:9px;font-size:13px;background:#fff;font-family:inherit}
+.toolbar input{flex:1;min-width:150px}
+.btn{border:none;border-radius:9px;padding:9px 12px;font-weight:700;font-size:13px;cursor:pointer;background:#eef1ff;color:#3243b8}
+.btn:hover{background:#e2e7ff}.btn.primary{background:var(--accent);color:#fff}
+.btn.green{background:var(--green);color:#fff}.btn.red{background:#fee2e2;color:#b91c1c}.btn.sm{padding:6px 9px;font-size:12px;border-radius:8px}
+.order{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:9px}
+.order .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.order .id{font-weight:800;font-size:15px}
+.order .who{color:var(--muted);font-size:12.5px}
+.order .meta{color:var(--muted);font-size:12.5px;margin-top:5px;line-height:1.5}
+.order .amount{margin-left:auto;font-weight:800}
+.badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:700}
+.badge.new{background:#eef1ff;color:#3243b8}.badge.waiting_payment{background:#fff7e6;color:#b45309}
+.badge.paid{background:#e9f9ef;color:#166534}.badge.sent{background:#dcfce7;color:#14532d}
+.badge.cancelled{background:#f3f4f6;color:#4b5563}.badge.refunded{background:#fde8e8;color:#b91c1c}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.empty{color:var(--muted);text-align:center;padding:20px 0}
+.field{display:flex;gap:7px;margin:7px 0;flex-wrap:wrap}
+.field input,.field select{flex:1;min-width:110px;padding:9px 11px;border:1px solid var(--line);border-radius:9px;font-size:13px;font-family:inherit}
+.hint{color:var(--muted);font-size:11.5px}
+.modal{position:fixed;inset:0;background:rgba(10,14,30,.55);display:none;align-items:flex-end;justify-content:center;z-index:60}
+.modal.open{display:flex}
+.modal-card{background:#fff;border-radius:18px 18px 0 0;width:100%;max-width:620px;max-height:88vh;overflow:auto;padding:18px}
+.modal-card h3{margin:0 0 4px;font-size:19px}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#10162b;color:#fff;padding:11px 16px;border-radius:11px;font-size:13.5px;display:none;z-index:70;max-width:90vw}
+.toast.show{display:block}
+details summary{cursor:pointer;font-weight:700;font-size:13.5px}
+.auth{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;text-align:center;margin-top:24px}
+@media(min-width:700px){.kpis{grid-template-columns:repeat(6,1fr)}}
+</style>
+</head>
+<body>
+<div class="header">
+  <b>Оффер<span>.</span> админ</b>
+  <div class="sp"></div>
+  <button id="refresh">↻</button>
+  <button id="closeBtn">✕</button>
+</div>
+<div class="wrap" id="app">
+  <div class="auth" id="authBox" style="display:none">
+    <h2>Открой панель из Telegram</h2>
+    <p class="hint">Эта админ-панель работает внутри Telegram-бота @OfferCareerBot.<br>Открой бота → /admin → «Админ-панель».</p>
+  </div>
+  <div id="main" style="display:none">
+    <div class="kpis" id="kpis"></div>
+    <div class="panel">
+      <h2>Заказы</h2>
+      <div class="toolbar">
+        <input id="q" placeholder="Поиск: #ID, Telegram ID, @username, роль">
+        <select id="status">
+          <option value="">Все статусы</option>
+          <option value="new">new</option><option value="waiting_payment">waiting_payment</option>
+          <option value="paid">paid</option><option value="sent">sent</option>
+          <option value="cancelled">cancelled</option><option value="refunded">refunded</option>
+        </select>
+      </div>
+      <div id="orders"></div>
+    </div>
+    <div class="panel">
+      <h2>💬 Поддержка</h2>
+      <div id="supportList" class="hint">Загрузка…</div>
+      <div class="field" style="margin-top:10px">
+        <input id="sUid" placeholder="Telegram ID получателя">
+        <input id="sText" placeholder="Текст ответа">
+        <button class="btn primary" id="sSend">Отправить</button>
+      </div>
+    </div>
+    <div class="panel">
+      <details><summary>➕ Ручной заказ (заявка из личных сообщений/почты)</summary>
+        <div class="field"><input id="mUid" placeholder="Telegram ID"><input id="mUsername" placeholder="@username"></div>
+        <div class="field"><select id="mPkg"><option>base</option><option>pro</option><option>vip</option><option>free</option></select>
+          <select id="mStatus"><option>new</option><option>waiting_payment</option><option>paid</option><option>sent</option></select>
+          <select id="mMethod"><option value="">—</option><option>card</option><option>erip</option><option>stars</option></select></div>
+        <div class="field"><input id="mAmount" placeholder="Сумма BYN (0 = по тарифу)"><input id="mRole" placeholder="Цель: Junior Python Backend"></div>
+        <div class="field"><input id="mNote" placeholder="Комментарий"></div>
+        <button class="btn primary" id="manualBtn">Создать заказ</button>
+      </details>
+    </div>
+    <div class="panel">
+      <h2>Бонусы по ID</h2>
+      <div class="field"><input id="dUid" placeholder="Telegram ID"><input id="dPct" placeholder="Скидка, % (0 — снять)"><input id="dNote" placeholder="Комментарий"></div>
+      <button class="btn" id="discountBtn">Выдать скидку</button>
+      <div class="field" style="margin-top:10px"><input id="gUid" placeholder="Telegram ID"><select id="gPkg"><option>base</option><option>pro</option><option>vip</option></select></div>
+      <button class="btn" id="giveBtn">Выдать пакет</button>
+    </div>
+    <p class="hint" style="text-align:center">Данные — облачная база Telegram Serverless · обновляется каждые 25 секунд</p>
+  </div>
+</div>
+<div class="modal" id="modal"><div class="modal-card" id="modalCard"></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const TG = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+const state = { data: null, filter: '' };
+
+function $(s){ return document.querySelector(s); }
+function esc(v){ return String(v == null ? '' : v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2800); }
+function call(name, input){
+  return new Promise((resolve, reject) => {
+    if (!TG || !TG.Serverless) return reject(new Error('Открой панель через Telegram-бота'));
+    TG.Serverless.call(name, input || {}, (err, result) => err ? reject(new Error(err.message || 'Ошибка')) : resolve(result));
+  });
+}
+function badge(s){ return '<span class="badge '+esc(s)+'">'+esc(s)+'</span>'; }
+function statusNames(s){ return ({new:'в работе',waiting_payment:'ожидает оплаты',paid:'оплачен',sent:'отчёт отправлен',cancelled:'отменён',refunded:'возврат'})[s] || s; }
+
+async function load(){
+  try {
+    const d = await call('adminData', {});
+    state.data = d;
+    renderKpis(); renderOrders(); loadSupport();
+  } catch (e) { toast(e.message); }
+}
+
+async function loadSupport(){
+  const box = document.getElementById('supportList');
+  if (!box) return;
+  try {
+    const d = await call('adminSupport', {});
+    const rows = (d.messages || []).slice(-15).reverse();
+    if (!rows.length) { box.textContent = 'Сообщений пока нет.'; return; }
+    box.innerHTML = rows.map(m => (
+      '<div style="padding:8px 0;border-bottom:1px solid #e3e7f2">' +
+      '<b>' + (m.role === 'admin' ? 'ТЫ' : 'ID ' + m.userId + (m.username ? ' @' + m.username : '')) + '</b> ' +
+      '<span class="hint">' + new Date(m.createdAt).toLocaleString('ru-RU') + '</span><br>' +
+      esc(m.text) +
+      (m.role !== 'admin' ? ' <button class="btn sm" data-reply="' + m.userId + '">Ответить</button>' : '') +
+      '</div>'
+    )).join('');
+    document.querySelectorAll('#supportList [data-reply]').forEach(b => b.addEventListener('click', () => {
+      const u = document.getElementById('sUid'); const t = document.getElementById('sText');
+      if (u) u.value = b.getAttribute('data-reply');
+      if (t) t.focus();
+    }));
+  } catch (e) { box.textContent = e.message; }
+}
+
+function renderKpis(){
+  const s = state.data.stats || {};
+  $('#kpis').innerHTML = [
+    ['Заказов', s.total || 0, ''], ['Оплачено', s.paid || 0, 'g'],
+    ['Выручка', (s.revenue || 0) + ' BYN', 'g'], ['Stars', (s.stars || 0) + ' ⭐', 'a'],
+    ['Средний чек', (s.avg || 0) + ' BYN', 'a'], ['Сегодня', s.total ? '' : '', ''],
+  ].map(x => '<div class="kpi '+x[2]+'"><b>'+x[1]+'</b><span>'+x[0]+'</span></div>').join('');
+}
+
+function renderOrders(){
+  const q = ($('#q').value || '').toLowerCase();
+  const st = $('#status').value;
+  const orders = (state.data.orders || []).filter(o => (!st || o.status === st) &&
+    (!q || String(o.id).includes(q) || String(o.userId).includes(q) ||
+     (o.username || '').toLowerCase().includes(q) || (o.role || '').toLowerCase().includes(q)));
+  if (!orders.length) { $('#orders').innerHTML = '<div class="empty">Заказов нет</div>'; return; }
+  $('#orders').innerHTML = orders.map(o => `
+    <div class="order" data-id="${o.id}">
+      <div class="top">
+        <span class="id">#${o.id}</span>${badge(o.status)}
+        <span class="who">ID ${o.userId} ${o.username ? '@'+esc(o.username) : ''}</span>
+        <span class="amount">${o.amountByn || 0} BYN</span>
+      </div>
+      <div class="meta">${esc(o.packageTitle)} · ${esc(o.method || 'способ не выбран')} · ${esc(o.role || 'роль не указана')} ${o.hasResume ? '· 📎 резюме' : '· без резюме'}</div>
+      <div class="actions">
+        ${o.status !== 'paid' && o.status !== 'sent' ? `<button class="btn green sm" data-act="pay" data-id="${o.id}">✅ Оплата</button>` : ''}
+        <button class="btn primary sm" data-act="audit" data-id="${o.id}">🚀 Отчёт</button>
+        ${o.status !== 'cancelled' ? `<button class="btn red sm" data-act="cancel" data-id="${o.id}">❌ Отмена</button>` : ''}
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('[data-act]').forEach(btn => btn.addEventListener('click', (e) => {
+    e.stopPropagation(); doAction(btn.dataset.id, btn.dataset.act);
+  }));
+  document.querySelectorAll('.order').forEach(el => el.addEventListener('click', () => openOrder(el.dataset.id)));
+}
+
+function openOrder(id){
+  const o = (state.data.orders || []).find(x => String(x.id) === String(id));
+  if (!o) return;
+  $('#modalCard').innerHTML = `
+    <h3>Заказ #${o.id}</h3>
+    <div class="hint">${esc(o.username || '—')} · Telegram ID <b>${o.userId}</b> · ${esc(o.createdAt)}</div>
+    <div style="margin-top:10px;line-height:1.8">
+      <b>Пакет:</b> ${esc(o.packageTitle)} · <b>Сумма:</b> ${o.amountByn || 0} BYN<br>
+      <b>Статус:</b> ${badge(o.status)}<br>
+      <b>Способ:</b> ${esc(o.method || '—')} · <b>Роль:</b> ${esc(o.role || '—')}<br>
+      <b>Резюме:</b> ${o.hasResume ? 'есть текст' : 'нет'}<br>
+      <b>Заметка:</b> ${esc(o.note || '—')}
+    </div>
+    ${o.resumePreview ? '<div class="hint" style="margin-top:8px;white-space:pre-wrap">'+esc(o.resumePreview)+'…</div>' : ''}
+    <div class="actions">
+      <button class="btn green" data-act="pay" data-id="${o.id}">✅ Оплата пришла</button>
+      <button class="btn primary" data-act="audit" data-id="${o.id}">🚀 Сгенерировать отчёт</button>
+      <button class="btn" data-act="cancel" data-id="${o.id}">❌ Отменить</button>
+      ${o.hasCharge ? '<button class="btn red" data-act="refund" data-id="'+o.id+'">↩︎ Вернуть Stars</button>' : ''}
+      <button class="btn" data-close="1">Закрыть</button>
+    </div>
+    <div class="field"><input id="noteInput" placeholder="Заметка к заказу" value="${esc(o.note || '')}"><button class="btn" id="noteBtn">Сохранить</button></div>
+  `;
+  $('#modal').classList.add('open');
+  document.querySelectorAll('#modalCard [data-act]').forEach(b => b.addEventListener('click', () => doAction(b.dataset.id, b.dataset.act)));
+  document.querySelectorAll('#modalCard [data-close]').forEach(b => b.addEventListener('click', closeModal));
+  const noteBtn = $('#noteBtn');
+  if (noteBtn) noteBtn.addEventListener('click', async () => {
+    try { await call('adminAction', { action: 'note', id: o.id, note: $('#noteInput').value }); toast('Заметка сохранена'); closeModal(); load(); }
+    catch (e) { toast(e.message); }
+  });
+}
+document.getElementById("sSend").addEventListener("click", async () => {
+  try {
+    const res = await call("adminAction", { action: "supportReply", userId: Number(document.getElementById("sUid").value), text: document.getElementById("sText").value });
+    toast(res.message || "Отправлено"); document.getElementById("sText").value = ""; loadSupport();
+  } catch (e) { toast(e.message); }
+});
+
+function closeModal(){ $('#modal').classList.remove('open'); }
+
+async function doAction(id, action){
+  try {
+    toast(action === 'audit' ? 'Генерирую отчёт (до 1–2 минут)…' : 'Выполняю…');
+    const res = await call('adminAction', { action, id: Number(id) });
+    toast(res.message || 'Готово');
+    closeModal(); await load();
+  } catch (e) { toast(e.message); }
+}
+
+document.getElementById('refresh').addEventListener('click', load);
+document.getElementById('closeBtn').addEventListener('click', () => { try { TG.close(); } catch(e) {} });
+document.getElementById('q').addEventListener('input', renderOrders);
+document.getElementById('status').addEventListener('change', renderOrders);
+document.getElementById('manualBtn').addEventListener('click', async () => {
+  try {
+    const res = await call('adminAction', { action:'manual', userId: Number($('#mUid').value), username: $('#mUsername').value,
+      pkg: $('#mPkg').value, status: $('#mStatus').value, method: $('#mMethod').value,
+      amountByn: Number($('#mAmount').value) || 0, role: $('#mRole').value, note: $('#mNote').value });
+    toast(res.message); load();
+  } catch (e) { toast(e.message); }
+});
+document.getElementById('discountBtn').addEventListener('click', async () => {
+  try {
+    const res = await call('adminAction', { action:'discount', userId: Number($('#dUid').value),
+      percent: Number($('#dPct').value) || 0, note: $('#dNote').value });
+    toast(res.message); load();
+  } catch (e) { toast(e.message); }
+});
+document.getElementById('giveBtn').addEventListener('click', async () => {
+  try {
+    const res = await call('adminAction', { action:'give', userId: Number($('#gUid').value), pkg: $('#gPkg').value });
+    toast(res.message); load();
+  } catch (e) { toast(e.message); }
+});
+
+function start(){
+  if (!TG || !TG.initData) { $('#authBox').style.display = 'block'; return; }
+  try { TG.ready(); TG.expand(); TG.setHeaderColor('#10162b'); } catch (e) {}
+  $('#main').style.display = 'block';
+  load();
+  setInterval(load, 25000);
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+</script>
+</body>
+</html>

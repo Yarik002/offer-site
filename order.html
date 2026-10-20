@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>Оформить заказ — Оффер | AI-поиск работы</title>
+<meta name="description" content="Оформление заказа на сайте сервиса «Оффер»: разбор резюме, подбор вакансий, сопроводительные письма и подготовка к интервью. Оплата картой, через ЕРИП или Telegram Stars.">
+<meta property="og:title" content="Оформить заказ — Оффер">
+<meta property="og:image" content="assets/og-image.png">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="stylesheet" href="style.css?v=20261020l">
+<link rel="stylesheet" href="order.css?v=20261020l">
+<style>
+/* critical header layout: не даём шапке наезжать друг на друга */
+.header .wrap.nav{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:16px;height:70px}
+.header .brand{flex:0 0 auto;white-space:nowrap}
+.header .nav-links{display:flex;flex-wrap:nowrap;white-space:nowrap;gap:18px;min-width:0;font-size:14.5px}
+.header .nav-links a{white-space:nowrap}
+.header .nav-cta{display:flex;flex-wrap:nowrap;align-items:center;gap:8px;flex:0 0 auto}
+.header .nav-cta .btn{white-space:nowrap}
+@media(max-width:1220px){.header .nav-links{display:none}.header .burger{display:block}}
+@media(max-width:980px){.header .nav-cta .btn-ghost{display:none}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img src="assets/logo-256.png" alt="Оффер">Оффер<span style="color:var(--accent)">.</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Главная</a>
+      <a href="index.html#how">Как работает</a>
+      <a href="index.html#pricing">Тарифы</a>
+      <a href="index.html#faq">Вопросы</a>
+      <a href="support.html">Поддержка</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary btn-sm" data-bot href="https://t.me/OfferCareerBot">Бот</a>
+      <button class="burger" id="burger" aria-label="Меню">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Главная</a>
+    <a href="index.html#pricing">Тарифы</a>
+    <a href="support.html">Поддержка</a>
+    <a href="demo-report.html">Пример отчёта</a>
+    <a data-bot href="https://t.me/OfferCareerBot" style="color:var(--accent)">Открыть бота →</a>
+  </div>
+</header>
+
+<main class="order-wrap">
+  <div class="wrap">
+    <div style="margin-bottom:26px">
+      <span class="eyebrow">Оформление заказа</span>
+      <h1 style="font-size:clamp(26px,4vw,40px);margin:8px 0 10px">Заявка на AI-разбор — 3 шага</h1>
+      <p class="lead" style="max-width:640px">Выбери пакет, оставь контакты и оплати удобным способом. Резюме пришлёшь в Telegram после заявки. Оплата фиксированная, без скрытых доплат.</p>
+      <p style="color:var(--muted);font-size:13px;max-width:640px">Сайт принимает заявки круглосуточно. Если бот временно недоступен — заявка сохранится, а я свяжусь с тобой вручную по указанному контакту.</p>
+    </div>
+
+    <div class="progress">
+      <div class="pstep active"><span class="dot">1</span> Пакет</div>
+      <div class="pstep"><span class="dot">2</span> Контакты</div>
+      <div class="pstep"><span class="dot">3</span> Оплата</div>
+    </div>
+
+    <div class="order-grid">
+      <div class="order-card">
+        <!-- Шаг 1 -->
+        <section class="step-panel active" data-panel="1">
+          <h2>Выбери пакет</h2>
+          <div class="sub">Начни с бесплатного аудита или возьми полный пакет.</div>
+          <div class="plan-options">
+            <label class="plan-option" data-plan="free">
+              <input type="radio" name="plan">
+              <div class="po-name">Бесплатный аудит</div>
+              <div class="po-price">0 <small>BYN</small></div>
+              <div class="po-desc">10 правок, 5 живых вакансий, 1 письмо · 24 часа</div>
+            </label>
+            <label class="plan-option selected" data-plan="base">
+              <input type="radio" name="plan">
+              <div class="po-name">Базовый</div>
+              <div class="po-price">39 <small>BYN</small></div>
+              <div class="po-desc">20 живых вакансий, 2 резюме, 3 письма · 2 дня</div>
+              <span class="po-badge">ХИТ</span>
+            </label>
+            <label class="plan-option" data-plan="pro">
+              <input type="radio" name="plan">
+              <div class="po-name">Про</div>
+              <div class="po-price">79 <small>BYN</small></div>
+              <div class="po-desc">40 живых вакансий + 30 откликов, подготовка к интервью · 3–4 дня</div>
+            </label>
+            <label class="plan-option" data-plan="vip">
+              <input type="radio" name="plan">
+              <div class="po-name">VIP</div>
+              <div class="po-price">149 <small>BYN</small></div>
+              <div class="po-desc">60 живых вакансий + 2 недели сопровождения и мок-интервью · 14 дней</div>
+            </label>
+          </div>
+          <div class="nav-btns">
+            <a class="btn btn-ghost" href="index.html">← На главную</a>
+            <button class="btn btn-primary" id="next1">Далее →</button>
+          </div>
+        </section>
+
+        <!-- Шаг 2 -->
+        <section class="step-panel" data-panel="2">
+          <h2>Контакты и цель</h2>
+          <div class="sub">Нужны, чтобы связаться с тобой и подготовить отчёт. Резюме пришлёшь в Telegram.</div>
+          <div class="field">
+            <label for="fName">Имя</label>
+            <input id="fName" type="text" placeholder="Ярослав" autocomplete="name">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="fContact">Telegram / телефон / email</label>
+              <input id="fContact" type="text" placeholder="@username или +375..." autocomplete="off">
+              <div class="hint">Лучше Telegram — там пришлю отчёт и чек.</div>
+            </div>
+            <div class="field">
+              <label for="fExp">Уровень / опыт</label>
+              <select id="fExp">
+                <option value="">Не выбрано</option>
+                <option>Нет опыта, студент</option>
+                <option>До 1 года</option>
+                <option>1–3 года</option>
+                <option>3+ года</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="fRole">Куда целимся</label>
+            <input id="fRole" type="text" placeholder="Junior Python Backend, удалённо / Бухгалтер, Минск">
+            <div class="hint">Роль и формат: например, «Junior Python Backend, удалённо», «Бухгалтер, Минск» или «Маркетолог, удалённо».</div>
+          </div>
+          <div class="field">
+            <label for="fComment">Комментарий (необязательно)</label>
+            <textarea id="fComment" rows="3" placeholder="Например: нужно сделать упор на финтех и тестовое задание"></textarea>
+          </div>
+          <div class="nav-btns">
+            <button class="btn btn-ghost" data-back="1">← Назад</button>
+            <button class="btn btn-primary" id="next2">Далее →</button>
+          </div>
+        </section>
+
+        <!-- Шаг 3 -->
+        <section class="step-panel" data-panel="3">
+          <h2>Оплата</h2>
+          <div class="sub">Выбери способ. Сумма фиксированная — ровно столько, сколько указано.</div>
+          <div class="pay-methods">
+            <label class="pay-method selected" data-pay="card"><input type="radio" name="pay">
+              <div class="pm-ico">💳</div><b>Карта</b><span>МТБ / Беларусбанк</span></label>
+            <label class="pay-method" data-pay="erip"><input type="radio" name="pay">
+              <div class="pm-ico">🧾</div><b>ЕРИП</b><span>Система расчётов</span></label>
+            <label class="pay-method" data-pay="stars"><input type="radio" name="pay">
+              <div class="pm-ico">⭐</div><b>Telegram Stars</b><span>в 2 клика</span></label>
+          </div>
+          <div class="pay-details" id="payDetails"></div>
+          <div class="order-note">🔒 Мы не просим коды из СМС, данные карты или пароли. Только перевод по реквизитам или оплата Stars внутри Telegram. Фиксированная сумма без обмена.</div>
+          <div class="nav-btns">
+            <button class="btn btn-ghost" data-back="2">← Назад</button>
+            <button class="btn btn-primary" id="submitOrder">Оформить заявку</button>
+          </div>
+
+          <div class="success-panel" id="successPanel">
+            <h3>✅ Заявка создана</h3>
+            <div id="successText"></div>
+            <div class="success-pay" id="successPay"></div>
+            <div class="order-paths">
+              <div class="path-card">
+                <h4>💳 Оформить на сайте</h4>
+                <p>Переведи ровно указанную сумму на карту/ЕРИП и отправь заявку на email — администратор увидит её и свяжется. Telegram не обязателен.</p>
+                <div class="hint">Реквизиты — в блоке выше.</div>
+              </div>
+              <div class="path-card tg">
+                <h4>✈️ Продолжить в Telegram</h4>
+                <p>Отправь заявку боту — он попросит резюме, покажет оплату и пришлёт отчёт после подтверждения. Заказ сразу появится в админ-панели.</p>
+                <div class="hint">Выбери чат «Оффер — AI-поиск работы» в окне отправки.</div>
+              </div>
+            </div>
+            <ol>
+              <li>Скопируй заявку или отправь её боту/на email.</li>
+              <li>Оплати ровно указанную сумму (карта/ЕРИП/Stars).</li>
+              <li>Пришли резюме — сразу после подтверждения начну работу.</li>
+            </ol>
+            <div class="order-actions">
+              <button type="button" class="btn btn-primary" id="emailOrderBtn">📧 Отправить заявку на email</button>
+              <button type="button" class="btn btn-green" id="paidEmailBtn">✅ Я оплатил — отправить подтверждение</button>
+              <button type="button" class="btn" id="copyOrderBtn">📋 Скопировать заявку</button>
+              <button type="button" class="btn btn-ghost" id="sendTgBtn">✈️ Продолжить в Telegram</button>
+            </div>
+            <div id="starsWrap" style="display:none;margin-top:14px">
+              <a class="btn btn-green" id="starsBtn" data-bot href="https://t.me/OfferCareerBot">⭐ Оплатить Stars в боте</a>
+              <div class="hint" style="margin-top:6px">После оплаты Stars отчёт придёт автоматически за 1–3 минуты.</div>
+            </div>
+            <div class="hint" id="tgHint" style="margin-top:12px">Для варианта с Telegram: в окне отправки выбери чат <b>«Оффер — AI-поиск работы»</b> и нажми «Отправить». Для варианта с сайтом — отправь заявку на email: Telegram не обязателен.</div>
+            <div class="hint" style="margin-top:6px">Твой номер заказа: <span class="order-id" id="orderIdLabel">—</span></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Сводка -->
+      <aside class="summary-card">
+        <h3>Твой заказ</h3>
+        <div class="sum-row"><span>Пакет</span><b id="sumPlan">Базовый</b></div>
+        <div class="sum-row"><span>Стоимость</span><b id="sumPrice">39 BYN</b></div>
+        <div class="sum-row"><span>В звёздах</span><b id="sumStars">250 ⭐</b></div>
+        <div class="sum-row"><span>Номер заказа</span><b id="sumComment">создастся при отправке</b></div>
+        <div class="sum-row total"><span>К оплате</span><span id="sumTotal">39 BYN</span></div>
+        <div class="sum-note" id="sumDesc">20 живых вакансий, 2 версии резюме, 3 письма · 2 дня</div>
+        <div class="sum-note">Оплата: карта, ЕРИП или Telegram Stars. Чек самозанятого — после подтверждения.</div>
+        <div class="sum-note">Есть вопросы? <a data-bot href="https://t.me/OfferCareerBot" style="color:var(--accent)">Напиши в бот</a> или на <a href="mailto:erder101@gmail.com" style="color:var(--accent)">erder101@gmail.com</a>.</div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="brand" style="margin-bottom:12px"><img src="assets/logo-256.png" alt="">Оффер<span style="color:var(--accent)">.</span></div><p style="max-width:280px;margin:0">AI-сервис поиска работы для специалистов: IT и другие профессии. Минск, Беларусь · удалённо.</p></div>
+      <div><b>Сервис</b><a href="index.html">Главная</a><a href="index.html#pricing">Тарифы</a><a href="demo-report.html">Пример отчёта</a></div>
+      <div><b>Документы</b><a href="oferta.html">Оферта и данные</a><a href="schools.html">Для IT-школ</a><a data-bot href="https://t.me/OfferCareerBot">Telegram-бот</a></div>
+      <div><b>Контакты</b><a href="mailto:erder101@gmail.com">erder101@gmail.com</a><a data-bot href="https://t.me/OfferCareerBot">@OfferCareerBot</a><a href="https://github.com/Yarik002" target="_blank" rel="noopener">github.com/Yarik002</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Ярослав Кирдун. Услуги оказываются как самозанятый (НПД). Не является гарантией трудоустройства.</span><span>Оплата фиксированная · чек выдаётся</span></div>
+  </div>
+</footer>
+
+<div class="email-modal" id="emailModal" aria-hidden="true">
+  <div class="email-card" role="dialog" aria-modal="true" aria-labelledby="emailTitle">
+    <button type="button" class="email-close" id="emailClose" aria-label="Закрыть">×</button>
+    <h3 id="emailTitle">📧 Отправить заявку на email</h3>
+    <p class="email-sub">Заявка <b id="emailOrderNum">—</b> · получатель <b>erder101@gmail.com</b></p>
+    <div class="email-actions">
+      <a class="email-opt" id="emailGmail" target="_blank" rel="noopener">
+        <b>Открыть Gmail</b><small>письмо уже заполнено — останется нажать «Отправить»</small>
+      </a>
+      <button type="button" class="email-opt" id="emailCopy">
+        <b>Скопировать письмо</b><small>вставить в почту или мессенджер</small>
+      </button>
+    </div>
+    <div class="hint" style="margin-top:12px">Если Gmail не открылся — нажми «Скопировать письмо» и отправь на <b>erder101@gmail.com</b>.</div>
+  </div>
+</div>
+
+<script src="script.js?v=20261020l"></script>
+<script src="order.js?v=20261020l"></script>
+</body>
+</html>
