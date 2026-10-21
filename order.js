@@ -7,11 +7,10 @@
   function inTelegram() { return !!(TG && TG.initData && TG.initData.length > 0); }
   var SITE = "https://yarik002.github.io/offer-site";
   var OWNER = "usernaaamer";
-  var CARD = { bank: "МТБ", number: "4649 9012 2111 2160", holder: "Кирдун Ярослав" };
   var ERIP = { account: "BY90MTBK30140008999902269467", bank: "МТБ", holder: "Кирдун Ярослав" };
 
   var PLANS = {
-    free: { title: "Бесплатный аудит", byn: 0, stars: 0, desc: "10 правок резюме, 5 вакансий, 1 письмо · 24 часа" },
+    free: { title: "Бесплатный аудит", byn: 0, stars: 0, desc: "оценка, правки резюме, 5 живых вакансий, 1 письмо · 1–3 минуты в боте" },
     base: { title: "Базовый", byn: 39, stars: 250, desc: "20 живых вакансий, 2 версии резюме, 3 письма · 2 дня" },
     pro: { title: "Про", byn: 79, stars: 450, desc: "40 живых вакансий + 30 откликов, подготовка к интервью · 3–4 дня" },
     vip: { title: "VIP", byn: 149, stars: 800, desc: "60 живых вакансий + 2 недели сопровождения · 14 дней" }
@@ -20,7 +19,7 @@
   var state = {
     step: 1,
     plan: "base",
-    pay: "card",
+    pay: "erip",
     name: "",
     contact: "",
     role: "",
@@ -49,6 +48,7 @@
       if (!raw) return;
       var s = JSON.parse(raw);
       if (s && s.plan) { state = Object.assign(state, s); state.order = null; }
+      if (state.pay !== "stars") state.pay = "erip"; // старые черновики с оплатой картой
     } catch (e) {}
   }
 
@@ -67,7 +67,7 @@
     if (total) total.textContent = p.byn === 0 ? "0 BYN" : money(p.byn);
     var starsOption = document.querySelector('.pay-method[data-pay="stars"]');
     if (starsOption) starsOption.style.display = p.byn === 0 ? "none" : "";
-    if (p.byn === 0 && state.pay === "stars") state.pay = "card";
+    if (p.byn === 0 && state.pay === "stars") state.pay = "erip";
     renderPayMethods();
   }
 
@@ -87,17 +87,8 @@
     var html = "";
     if (p.byn === 0 && state.pay !== "stars") {
       html = '<h3>Бесплатный разбор — оплата не нужна</h3>' +
-        '<div class="steps-mini">Оставь заявку — я разберу резюме и пришлю отчёт в течение 24 часов. ' +
-        'Резюме можно приложить в Telegram после отправки заявки.</div>';
-    } else if (state.pay === "card") {
-      html = '<h3>💳 Реквизиты для перевода</h3>' +
-        row("Банк", CARD.bank, false) +
-        row("Номер карты", CARD.number, true) +
-        row("Получатель", CARD.holder, false) +
-        row("Сумма", money(p.byn), false) +
-        row("Комментарий", "ОФФЕР-" + (state.order ? state.order.id : "…"), true) +
-        '<div class="steps-mini">Нажми «Копировать» у номера карты. Переведи <b>ровно ' + p.byn + ' BYN одним платежом</b> и укажи комментарий. ' +
-        'После оплаты пришли скриншот в Telegram.</div>';
+        '<div class="steps-mini">Бесплатный разбор делает бот за 1–3 минуты: ' +
+        '<a href="https://t.me/' + BOT + '?start=free_audit" target="_blank" rel="noopener"><b>открыть бота и прислать резюме</b></a>.</div>';
     } else if (state.pay === "erip") {
       html = '<h3>🧾 Оплата через ЕРИП</h3>' +
         row("Счёт ЕРИП", ERIP.account, true) +
@@ -204,7 +195,7 @@
       "ЗАЯВКА НА СЕРВИС «ОФФЕР»",
       "Номер: " + id,
       "Пакет: " + p.title + " (" + (p.byn === 0 ? "бесплатно" : p.byn + " BYN") + ")",
-      "Оплата: " + (state.pay === "card" ? "Карта МТБ" : state.pay === "erip" ? "ЕРИП" : "Telegram Stars"),
+      "Оплата: " + (state.pay === "stars" ? "Telegram Stars" : "ЕРИП"),
       "Имя: " + state.name,
       "Контакт: " + state.contact,
       "Цель: " + state.role,
@@ -269,14 +260,7 @@
     var html = "";
     if (p.byn === 0) {
       html = '<div class="success-pay-title">🎁 Бесплатный разбор</div>' +
-        '<div class="hint">Оплата не нужна. Отправь заявку на email или в Telegram — я свяжусь и попрошу резюме.</div>';
-    } else if (state.pay === "card") {
-      html = '<div class="success-pay-title">💳 Оплата на сайте — реквизиты</div>' +
-        row("Банк", CARD.bank, false) +
-        row("Номер карты", CARD.number, true) +
-        row("Сумма", money(p.byn), false) +
-        row("Комментарий", "ОФФЕР-" + (state.order ? state.order.id : "…"), true) +
-        '<div class="hint">Переведи <b>ровно ' + p.byn + ' BYN одним платежом</b>. После оплаты отправь заявку на email — я проверю поступление и начну работу.</div>';
+        '<div class="hint">Оплата не нужна. Открой бота и пришли резюме — разбор придёт через 1–3 минуты.</div>';
     } else if (state.pay === "erip") {
       html = '<div class="success-pay-title">🧾 Оплата через ЕРИП — реквизиты</div>' +
         row("Счёт ЕРИП", ERIP.account, true) +
@@ -304,7 +288,7 @@
         "Номер заявки": state.order ? state.order.id : "",
         "Пакет": p.title,
         "Сумма": (p.byn === 0 ? "0 BYN" : p.byn + " BYN"),
-        "Способ оплаты": state.pay === "card" ? "Карта МТБ" : state.pay === "erip" ? "ЕРИП" : "Telegram Stars",
+        "Способ оплаты": state.pay === "stars" ? "Telegram Stars" : "ЕРИП",
         "Имя": state.name,
         "Контакт": state.contact,
         "Цель": state.role,
@@ -345,7 +329,7 @@
     if (state.emailMode === "paid") {
       var p = PLANS[state.plan];
       return "ПОДТВЕРЖДЕНИЕ ОПЛАТЫ\n\n" + base + "\n\nОПЛАТА: " +
-        (p.byn === 0 ? "бесплатно" : p.byn + " BYN") + " — переведено на карту/ЕРИП.\n" +
+        (p.byn === 0 ? "бесплатно" : p.byn + " BYN") + " — оплачено через ЕРИП.\n" +
         "Реквизиты/номер операции: (добавь при необходимости)";
     }
     return base;
@@ -392,7 +376,7 @@
     $all(".plan-option").forEach(function (el) {
       el.addEventListener("click", function () {
         state.plan = el.dataset.plan;
-        if (state.plan === "free" && state.pay === "stars") state.pay = "card";
+        if (state.plan === "free" && state.pay === "stars") state.pay = "erip";
         renderPlans();
         save();
       });

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <title>Оформить заказ — Оффер | AI-поиск работы</title>
-<meta name="description" content="Оформление заказа на сайте сервиса «Оффер»: разбор резюме, подбор вакансий, сопроводительные письма и подготовка к интервью. Оплата картой, через ЕРИП или Telegram Stars.">
+<meta name="description" content="Оформление заказа на сайте сервиса «Оффер»: разбор резюме, подбор вакансий, сопроводительные письма и подготовка к интервью. Оплата через ЕРИП или Telegram Stars.">
 <meta property="og:title" content="Оформить заказ — Оффер">
 <meta property="og:image" content="assets/og-image.png">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
@@ -75,7 +75,7 @@
               <input type="radio" name="plan">
               <div class="po-name">Бесплатный аудит</div>
               <div class="po-price">0 <small>BYN</small></div>
-              <div class="po-desc">10 правок, 5 живых вакансий, 1 письмо · 24 часа</div>
+              <div class="po-desc">оценка, правки, 5 живых вакансий, 1 письмо · 1–3 минуты в боте</div>
             </label>
             <label class="plan-option selected" data-plan="base">
               <input type="radio" name="plan">
@@ -147,16 +147,14 @@
         <section class="step-panel" data-panel="3">
           <h2>Оплата</h2>
           <div class="sub">Выбери способ. Сумма фиксированная — ровно столько, сколько указано.</div>
-          <div class="pay-methods">
-            <label class="pay-method selected" data-pay="card"><input type="radio" name="pay">
-              <div class="pm-ico">💳</div><b>Карта</b><span>МТБ / Беларусбанк</span></label>
-            <label class="pay-method" data-pay="erip"><input type="radio" name="pay">
+          <div class="pay-methods" style="grid-template-columns:repeat(2,1fr)">
+            <label class="pay-method selected" data-pay="erip"><input type="radio" name="pay">
               <div class="pm-ico">🧾</div><b>ЕРИП</b><span>Система расчётов</span></label>
             <label class="pay-method" data-pay="stars"><input type="radio" name="pay">
               <div class="pm-ico">⭐</div><b>Telegram Stars</b><span>в 2 клика</span></label>
           </div>
           <div class="pay-details" id="payDetails"></div>
-          <div class="order-note">🔒 Мы не просим коды из СМС, данные карты или пароли. Только перевод по реквизитам или оплата Stars внутри Telegram. Фиксированная сумма без обмена.</div>
+          <div class="order-note">🔒 Мы не просим коды из СМС, данные карты или пароли. Только платёж через ЕРИП или оплата Stars внутри Telegram. Фиксированная сумма без обмена.</div>
           <div class="nav-btns">
             <button class="btn btn-ghost" data-back="2">← Назад</button>
             <button class="btn btn-primary" id="submitOrder">Оформить заявку</button>
@@ -168,8 +166,8 @@
             <div class="success-pay" id="successPay"></div>
             <div class="order-paths">
               <div class="path-card">
-                <h4>💳 Оформить на сайте</h4>
-                <p>Переведи ровно указанную сумму на карту/ЕРИП и отправь заявку на email — администратор увидит её и свяжется. Telegram не обязателен.</p>
+                <h4>🧾 Оформить на сайте</h4>
+                <p>Оплати ровно указанную сумму через ЕРИП и отправь заявку на email — администратор увидит её и свяжется. Telegram не обязателен.</p>
                 <div class="hint">Реквизиты — в блоке выше.</div>
               </div>
               <div class="path-card tg">
@@ -180,7 +178,7 @@
             </div>
             <ol>
               <li>Скопируй заявку или отправь её боту/на email.</li>
-              <li>Оплати ровно указанную сумму (карта/ЕРИП/Stars).</li>
+              <li>Оплати ровно указанную сумму (ЕРИП или Stars).</li>
               <li>Пришли резюме — сразу после подтверждения начну работу.</li>
             </ol>
             <div class="order-actions">
@@ -208,7 +206,7 @@
         <div class="sum-row"><span>Номер заказа</span><b id="sumComment">создастся при отправке</b></div>
         <div class="sum-row total"><span>К оплате</span><span id="sumTotal">39 BYN</span></div>
         <div class="sum-note" id="sumDesc">20 живых вакансий, 2 версии резюме, 3 письма · 2 дня</div>
-        <div class="sum-note">Оплата: карта, ЕРИП или Telegram Stars. Чек самозанятого — после подтверждения.</div>
+        <div class="sum-note">Оплата: ЕРИП или Telegram Stars. Чек самозанятого — после подтверждения.</div>
         <div class="sum-note">Есть вопросы? <a data-bot href="https://t.me/OfferCareerBot" style="color:var(--accent)">Напиши в бот</a> или на <a href="mailto:erder101@gmail.com" style="color:var(--accent)">erder101@gmail.com</a>.</div>
       </aside>
     </div>
