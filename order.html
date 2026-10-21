@@ -9,7 +9,7 @@
 <meta property="og:title" content="Оформить заказ — Оффер">
 <meta property="og:image" content="assets/og-image.png">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
-<link rel="stylesheet" href="style.css?v=20261020l">
+<link rel="stylesheet" href="style.css?v=20261021c">
 <link rel="stylesheet" href="order.css?v=20261020l">
 <style>
 /* critical header layout: не даём шапке наезжать друг на друга */
@@ -27,25 +27,15 @@
 
 <header class="header">
   <div class="wrap nav">
-    <a class="brand" href="index.html"><img src="assets/logo-256.png" alt="Оффер">Оффер<span style="color:var(--accent)">.</span></a>
+    <a class="brand" href="index.html"><img src="assets/logo-256.png" alt="">Оффер<span style="color:var(--accent)">.</span></a>
     <nav class="nav-links">
-      <a href="index.html">Главная</a>
       <a href="index.html#how">Как работает</a>
       <a href="index.html#pricing">Тарифы</a>
       <a href="index.html#faq">Вопросы</a>
-      <a href="support.html">Поддержка</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-primary btn-sm" data-bot href="https://t.me/OfferCareerBot">Бот</a>
-      <button class="burger" id="burger" aria-label="Меню">☰</button>
+      <a class="btn btn-primary btn-sm" href="https://t.me/OfferCareerBot?start=free_audit" target="_blank" rel="noopener">Разобрать резюме</a>
     </div>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Главная</a>
-    <a href="index.html#pricing">Тарифы</a>
-    <a href="support.html">Поддержка</a>
-    <a href="demo-report.html">Пример отчёта</a>
-    <a data-bot href="https://t.me/OfferCareerBot" style="color:var(--accent)">Открыть бота →</a>
   </div>
 </header>
 
@@ -53,9 +43,8 @@
   <div class="wrap">
     <div style="margin-bottom:26px">
       <span class="eyebrow">Оформление заказа</span>
-      <h1 style="font-size:clamp(26px,4vw,40px);margin:8px 0 10px">Заявка на AI-разбор — 3 шага</h1>
-      <p class="lead" style="max-width:640px">Выбери пакет, оставь контакты и оплати удобным способом. Резюме пришлёшь в Telegram после заявки. Оплата фиксированная, без скрытых доплат.</p>
-      <p style="color:var(--muted);font-size:13px;max-width:640px">Сайт принимает заявки круглосуточно. Если бот временно недоступен — заявка сохранится, а я свяжусь с тобой вручную по указанному контакту.</p>
+      <h1 style="font-size:clamp(26px,4vw,40px);margin:8px 0 10px">Заказ на сайте — 3 шага</h1>
+      <p class="lead" style="max-width:640px">Для тех, кому удобнее без Telegram: выбери пакет, оставь контакт и оплати через ЕРИП — я свяжусь и пришлю отчёт.</p>
     </div>
 
     <div class="progress">
@@ -81,20 +70,20 @@
               <input type="radio" name="plan">
               <div class="po-name">Базовый</div>
               <div class="po-price">39 <small>BYN</small></div>
-              <div class="po-desc">20 живых вакансий, 2 резюме, 3 письма · 2 дня</div>
+              <div class="po-desc">20 вакансий, 2 готовых резюме, 3 письма · отчёт за пару минут</div>
               <span class="po-badge">ХИТ</span>
             </label>
             <label class="plan-option" data-plan="pro">
               <input type="radio" name="plan">
               <div class="po-name">Про</div>
               <div class="po-price">79 <small>BYN</small></div>
-              <div class="po-desc">40 живых вакансий + 30 откликов, подготовка к интервью · 3–4 дня</div>
+              <div class="po-desc">40 вакансий + 30 откликов за тебя за 3 дня</div>
             </label>
             <label class="plan-option" data-plan="vip">
               <input type="radio" name="plan">
               <div class="po-name">VIP</div>
               <div class="po-price">149 <small>BYN</small></div>
-              <div class="po-desc">60 живых вакансий + 2 недели сопровождения и мок-интервью · 14 дней</div>
+              <div class="po-desc">60 вакансий + 2 недели личного сопровождения</div>
             </label>
           </div>
           <div class="nav-btns">
@@ -205,7 +194,7 @@
         <div class="sum-row"><span>В звёздах</span><b id="sumStars">250 ⭐</b></div>
         <div class="sum-row"><span>Номер заказа</span><b id="sumComment">создастся при отправке</b></div>
         <div class="sum-row total"><span>К оплате</span><span id="sumTotal">39 BYN</span></div>
-        <div class="sum-note" id="sumDesc">20 живых вакансий, 2 версии резюме, 3 письма · 2 дня</div>
+        <div class="sum-note" id="sumDesc">20 вакансий, 2 готовых резюме, 3 письма · отчёт за пару минут</div>
         <div class="sum-note">Оплата: ЕРИП или Telegram Stars. Чек самозанятого — после подтверждения.</div>
         <div class="sum-note">Есть вопросы? <a data-bot href="https://t.me/OfferCareerBot" style="color:var(--accent)">Напиши в бот</a> или на <a href="mailto:erder101@gmail.com" style="color:var(--accent)">erder101@gmail.com</a>.</div>
       </aside>
