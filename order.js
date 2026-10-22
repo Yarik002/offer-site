@@ -7,7 +7,7 @@
   function inTelegram() { return !!(TG && TG.initData && TG.initData.length > 0); }
   var SITE = "https://yarik002.github.io/offer-site";
   var OWNER = "usernaaamer";
-  var ERIP = { account: "BY90MTBK30140008999902269467", bank: "МТБ", holder: "Кирдун Ярослав" };
+  var ERIP = { account: "BY90MTBK30140008999902269467", bank: "МТБанк", holder: "Кирдун Ярослав" };
 
   var PLANS = {
     free: { title: "Бесплатный аудит", byn: 0, stars: 0, desc: "оценка, правки резюме, 5 живых вакансий, 1 письмо · 1–3 минуты в боте" },
@@ -96,7 +96,7 @@
         row("Получатель", ERIP.holder, false) +
         row("Сумма", money(p.byn), false) +
         row("Комментарий", "ОФФЕР-" + (state.order ? state.order.id : "…"), true) +
-        '<div class="steps-mini">1) Приложение банка → Платежи → Система расчётов (ЕРИП). 2) Вставь счёт. ' +
+        '<div class="steps-mini">1) Приложение банка → «Перевод по реквизитам / на счёт» (или ЕРИП → Банковские, финансовые услуги → Банки, НКФО → МТБанк → пополнение счёта). 2) Вставь счёт. ' +
         '3) Сумма ровно ' + p.byn + ' BYN. 4) Пришли скриншот в Telegram.</div>';
     } else {
       html = '<h3>⭐ Оплата Telegram Stars</h3>' +
