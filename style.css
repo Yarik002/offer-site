@@ -133,6 +133,8 @@ p{margin:0 0 14px}
   font-size:14px;color:var(--muted);cursor:pointer;transition:.15s}
 .pricing-toggle button.active{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff}
 .plans{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch}
+.plans.plans-3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:860px){.plans.plans-3{grid-template-columns:1fr;max-width:460px;margin:0 auto}}
 .plan{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);
   border-radius:var(--radius);padding:26px 22px;transition:.2s}
 .plan:hover{box-shadow:var(--shadow);transform:translateY(-3px)}

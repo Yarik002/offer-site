@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Пример отчёта «Оффер»</title>
 <link rel="canonical" href="https://yarik002.github.io/offer-site/demo-report.html">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
 <meta property="og:url" content="https://yarik002.github.io/offer-site/demo-report.html">
 <meta property="og:image" content="https://yarik002.github.io/offer-site/assets/og-image.png">
 <meta property="og:title" content="Пример отчёта «Оффер»">
@@ -32,7 +33,8 @@
   .box h3{margin:0 0 8px;font-size:15px}
   ul{margin:6px 0 0 18px;padding:0}
   li{margin:5px 0}
-  table{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;min-width:560px;border-collapse:collapse;font-size:14px;margin-top:6px}
   th,td{text-align:left;border-bottom:1px solid var(--line);padding:9px 8px;vertical-align:top}
   th{background:#f8f9fc;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
   .fix{font-weight:600;color:#1d4ed8}
@@ -73,7 +75,7 @@
   </div>
 
   <h2>Правки резюме</h2>
-  <table>
+  <div class="table-wrap"><table>
     <thead><tr><th style="width:22%">Где</th><th style="width:34%">Проблема</th><th>Что сделать</th></tr></thead>
     <tbody><tr><td>Заголовок и блок «О себе»</td><td>Заголовок «Junior+» и перечисление технологий не показывают основную специализацию, масштаб проектов и подходящую роль.</td><td class='fix'>Python Backend Developer | FastAPI · PostgreSQL · Docker · AI Automation
 
@@ -88,7 +90,7 @@
 Разрабатывал API приёмки, адресного хранения и выдачи отправлений, ролевую модель доступа и JWT-авторизацию. Python-часть включала валидацию входных схем и серверные сценарии; тесты для Python-части написаны на pytest. Интеграционный JavaScript-контур использовал Node.js и Jest.</td></tr><tr><td>Проект «Voice Summary Bot»</td><td>Не раскрыты ограничения production-решения и надёжность обработки аудио.</td><td class='fix'>Voice Summary Bot — бот для транскрибации и суммаризации голосовых сообщений
 
 Организовал полный конвейер: приём голосового сообщения, конвертация аудио через ffmpeg, распознавание речи, передача текста в Groq API с моделью Llama и формирование краткого резюме. Использовал aiogram 3, pydub, Python 3 и Pydantic; предусмотрел удаление временных файлов после обработки.</td></tr><tr><td>Раздел «Технические навыки» и новый блок</td><td>Навыки перечислены без привязки к опыту, а CI/CD, наблюдаемость и качество эксплуатации не отражены.</td><td class='fix'>Отделить Core-компетенции от дополнительных инструментов и добавить блок «Инструменты разработки»: Git, GitHub, GitLab, Postman, Swagger/OpenAPI, pytest, ruff, mypy. В перечень не добавлять CI/CD, Docker Registry, Prometheus или Grafana, пока они фактически не использованы; сначала внедрить их в учебный проект.</td></tr></tbody>
-  </table>
+  </table></div>
 
   <h2>Чего не хватает в тексте (ключевые слова для ATS)</h2>
   <div><span class='chip'>CI/CD</span><span class='chip'>GitHub Actions</span><span class='chip'>GitLab CI/CD</span><span class='chip'>OpenAI API</span><span class='chip'>prompt engineering</span><span class='chip'>RAG</span><span class='chip'>vector databases</span><span class='chip'>WebSocket</span><span class='chip'>OAuth 2.0</span><span class='chip'>RabbitMQ</span><span class='chip'>Kubernetes</span><span class='chip'>observability</span><span class='chip'>Prometheus</span><span class='chip'>structured logging</span><span class='chip'>feature flags</span></div>
@@ -106,7 +108,7 @@
   <ol class="steps"><li>Переписать резюме по предложенным формулировкам, добавить дату отклика и проверить актуальность длительности опыта.</li><li>Добавить в Deribit Price Service CI-пайплайн в GitLab CI: тесты, ruff, mypy и сборку Docker-образа; перед добавлением в резюме проверить, что пайплайн действительно работает.</li><li>Подготовить README для Deribit Price Service: архитектурная схема, команды запуска, описание API, миграций, тестирования и известных ограничений.</li><li>Выпустить второй небольшой OpenAPI-сервис с OpenAI API, JSON-ответом Pydantic, retry, rate-limit обработкой и тестами с mock-ответами.</li><li>Собрать для AI Expense Tracker короткий технический кейс: схема БД, API или сценарий бота, prompt, валидация JSON, billing flow и два теста.</li><li>Провести пробное junior-интервью: письменно ответить на 8 вопросов, затем записать ответы на видео и убрать неконкретные формулировки.</li><li>Разобрать требования первой вакансии и оформить соответствие по ключевым словам Python, FastAPI, PostgreSQL, Docker, REST, SQLAlchemy, Celery, Redis и тестирование.</li><li>Отправить 5–7 точечных откликов в порядке приоритета, а через 2–3 дня внести ещё 2–3 локальные правки в резюме на основе требований вакансий.</li></ol>
 
   <div class="footer">
-    Отчёт подготовлен сервисом «Оффер» · Telegram: Telegram скрыт · github.com/Yarik002<br>
+    Отчёт подготовлен сервисом «Оффер» · Telegram: @OfferCareerBot · github.com/Yarik002<br>
     Отчёт носит рекомендательный характер и не гарантирует трудоустройство. Проверяй актуальность вакансий перед откликом.
   </div>
 </div>
