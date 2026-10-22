@@ -299,6 +299,13 @@ p{margin:0 0 14px}
 .header .nav-links{display:flex}
 .header .burger{display:none}
 @media (max-width:980px){.steps.steps-3{grid-template-columns:1fr}}
+.how-grid{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center}
+.how-grid .steps.steps-3{grid-template-columns:1fr;gap:26px}
+.how-video{margin:0;text-align:center}
+.how-video video{display:block;width:100%;aspect-ratio:9/16;border-radius:34px;background:#0b1046;
+  border:8px solid #101426;box-shadow:var(--shadow-lg)}
+.how-video figcaption{margin-top:12px;color:var(--muted);font-size:13.5px}
+@media (max-width:980px){.how-grid{grid-template-columns:1fr;gap:36px}.how-video{max-width:300px;margin:0 auto}}
 @media (max-width:760px){
   .header .nav-links{display:none}
   .header .burger{display:block}
