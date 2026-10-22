@@ -295,6 +295,9 @@ p{margin:0 0 14px}
 .steps.steps-3{grid-template-columns:repeat(3,1fr)}
 .plan .stars-price{font-size:12.5px;color:var(--muted);margin-top:6px}
 .plan .btn{width:100%}
+.vip-line{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:16px 0 0;padding:16px 20px;background:#fff;border:1px dashed var(--line);border-radius:18px;font-size:14px;line-height:1.5}
+.vip-line span{color:var(--muted)}
+@media (max-width:620px){.vip-line{flex-direction:column;align-items:stretch;text-align:left}}
 .pricing-note{text-align:center;color:var(--muted);font-size:14px;margin:24px auto 0;max-width:720px;line-height:1.7}
 .pricing-note a{color:var(--accent);font-weight:600}
 .footer-grid.footer-3{grid-template-columns:1.6fr 1fr 1fr}

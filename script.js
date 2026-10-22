@@ -109,7 +109,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (a) {
 (function () {
   var sheet = document.getElementById("chooseSheet");
   if (!sheet) return;
-  var PLANS = { base: ["Базовый", "39 BYN"], pro: ["Про", "79 BYN"], vip: ["VIP", "149 BYN"] };
+  var PLANS = { start: ["Старт", "15 BYN"], base: ["Базовый", "39 BYN"], pro: ["Про", "79 BYN"], vip: ["VIP", "149 BYN"] };
   var lastFocus = null;
   function open(plan) {
     var p = PLANS[plan] || PLANS.base;
