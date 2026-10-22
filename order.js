@@ -443,9 +443,12 @@
     // если пришли с параметром plan=... или pay=...
     try {
       var params = new URLSearchParams(location.search);
-      if (params.get("plan") && PLANS[params.get("plan")]) { state.plan = params.get("plan"); }
+      var planParam = params.get("plan");
+      if (planParam && PLANS[planParam]) { state.plan = planParam; }
       if (params.get("pay") === "stars") state.pay = "stars";
       renderPlans(); renderPayMethods();
+      // пакет уже выбран на главной — сразу к контактам
+      if (planParam && PLANS[planParam] && planParam !== "free") go(2);
     } catch (e) {}
   });
 })();

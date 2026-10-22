@@ -311,3 +311,44 @@ p{margin:0 0 14px}
   .hstat b{font-size:19px}
   .hstat span{font-size:12px;line-height:1.35;display:block}
 }
+
+/* ===== Выбор «Telegram или сайт» после «Выбрать» (22.10) ===== */
+.site-order{display:flex;align-items:center;gap:18px;max-width:760px;margin:20px auto 0;background:#fff;
+  border:1.5px dashed #c9d3ff;border-radius:18px;padding:18px 22px}
+.site-order .so-ico{font-size:28px;flex:0 0 auto}
+.site-order .so-text{flex:1;min-width:0}
+.site-order .so-text b{display:block;font-size:16px;margin-bottom:2px}
+.site-order .so-text span{color:var(--muted);font-size:14px}
+.site-order .btn{flex:0 0 auto;border-color:var(--accent);color:var(--accent)}
+.site-order .btn:hover{background:var(--accent);color:#fff}
+.sheet{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;
+  padding:18px;background:rgba(10,14,30,.55);backdrop-filter:blur(3px)}
+.sheet.open{display:flex;animation:sheetFade .18s ease}
+.sheet-card{position:relative;background:#fff;border-radius:24px;width:100%;max-width:620px;padding:28px;
+  box-shadow:0 30px 80px rgba(15,23,42,.35);animation:sheetUp .22s ease}
+.sheet-card h3{font-size:24px;margin:4px 0 18px}
+.sheet-plan{display:inline-block;background:#eef1ff;color:var(--accent);font-weight:700;font-size:13px;
+  padding:5px 12px;border-radius:999px}
+.sheet-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border:none;border-radius:11px;
+  background:#f1f3fb;color:var(--muted);font-size:22px;line-height:1;cursor:pointer}
+.sheet-close:hover{background:#e6e9f5}
+.sheet-options{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sheet-option{position:relative;display:flex;flex-direction:column;gap:6px;border:1.5px solid var(--line);
+  border-radius:18px;padding:20px;background:#fff;transition:.15s}
+.sheet-option:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow)}
+.sheet-option.tg{border-color:var(--accent);background:linear-gradient(180deg,#f4f6ff,#fff)}
+.sheet-ico{font-size:28px}
+.sheet-option b{font-size:18px}
+.sheet-option small{color:var(--muted);font-size:13.5px;line-height:1.5;flex:1}
+.sheet-go{margin-top:8px;font-weight:700;color:var(--accent);font-size:15px}
+.so-badge{position:absolute;top:14px;right:14px;background:var(--green);color:#fff;font-size:11px;font-weight:800;
+  padding:3px 9px;border-radius:999px;letter-spacing:.03em}
+@keyframes sheetFade{from{opacity:0}to{opacity:1}}
+@keyframes sheetUp{from{transform:translateY(16px);opacity:.6}to{transform:none;opacity:1}}
+@media (max-width:640px){
+  .site-order{flex-direction:column;text-align:center;gap:10px}
+  .site-order .btn{width:100%}
+  .sheet{align-items:flex-end;padding:0}
+  .sheet-card{border-radius:24px 24px 0 0;padding:24px 18px 28px;max-height:92vh;overflow:auto}
+  .sheet-options{grid-template-columns:1fr}
+}

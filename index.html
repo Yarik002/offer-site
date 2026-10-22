@@ -13,7 +13,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
-<link rel="stylesheet" href="style.css?v=20261021c">
+<link rel="stylesheet" href="style.css?v=20261022a">
 </head>
 <body>
 
@@ -140,7 +140,7 @@
           <div class="price">39 <small>BYN</small></div>
           <div class="stars-price">или 250 ⭐ в Telegram</div>
           <ul><li>20 свежих вакансий</li><li>2 готовых резюме: для ATS и для человека</li><li>3 письма под вакансии</li><li>Вопросы к интервью</li></ul>
-          <a class="btn btn-primary" href="https://t.me/OfferCareerBot?start=buy_base" target="_blank" rel="noopener">Выбрать</a>
+          <a class="btn btn-primary" href="https://t.me/OfferCareerBot?start=buy_base" target="_blank" rel="noopener" data-choose="base">Выбрать</a>
         </div>
         <div class="plan">
           <div class="pname">Про</div>
@@ -148,7 +148,7 @@
           <div class="price">79 <small>BYN</small></div>
           <div class="stars-price">или 450 ⭐ в Telegram</div>
           <ul><li>Всё из «Базового»</li><li>40 свежих вакансий</li><li>30 откликов за тебя — за 3 дня</li><li>Follow-up по откликам</li></ul>
-          <a class="btn btn-ghost" href="https://t.me/OfferCareerBot?start=buy_pro" target="_blank" rel="noopener">Выбрать</a>
+          <a class="btn btn-ghost" href="https://t.me/OfferCareerBot?start=buy_pro" target="_blank" rel="noopener" data-choose="pro">Выбрать</a>
         </div>
         <div class="plan">
           <div class="pname">VIP</div>
@@ -156,11 +156,15 @@
           <div class="price">149 <small>BYN</small></div>
           <div class="stars-price">или 800 ⭐ в Telegram</div>
           <ul><li>Всё из «Про»</li><li>60 свежих вакансий</li><li>2 недели сопровождения</li><li>Мок-интервью и разбор тестового</li></ul>
-          <a class="btn btn-ghost" href="https://t.me/OfferCareerBot?start=buy_vip" target="_blank" rel="noopener">Выбрать</a>
+          <a class="btn btn-ghost" href="https://t.me/OfferCareerBot?start=buy_vip" target="_blank" rel="noopener" data-choose="vip">Выбрать</a>
         </div>
       </div>
-      <p class="pricing-note">Оплата через <b>ЕРИП</b> или <b>Telegram Stars</b> · чек самозанятого · не понравится качество — верну деньги.<br>
-        Нет Telegram? <a href="order.html">Оформить заказ на сайте</a></p>
+      <p class="pricing-note">Оплата через <b>ЕРИП</b> или <b>Telegram Stars</b> · чек самозанятого · не понравится качество — верну деньги.</p>
+      <div class="site-order">
+        <div class="so-ico">💻</div>
+        <div class="so-text"><b>Нет Telegram или неудобно в нём?</b><span>Оформи заказ прямо на сайте: выбери пакет, оставь контакт и оплати через ЕРИП.</span></div>
+        <a class="btn btn-ghost" href="order.html">Оформить на сайте →</a>
+      </div>
     </div>
   </section>
 
@@ -229,6 +233,29 @@
   </div>
 </footer>
 
-<script src="script.js?v=20261021c"></script>
+<div class="sheet" id="chooseSheet" aria-hidden="true">
+  <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <button type="button" class="sheet-close" data-sheet-close aria-label="Закрыть">×</button>
+    <div class="sheet-plan" id="sheetPlan">Пакет «Базовый» · 39 BYN</div>
+    <h3 id="sheetTitle">Где удобнее оформить?</h3>
+    <div class="sheet-options">
+      <a class="sheet-option tg" id="sheetTg" href="https://t.me/OfferCareerBot?start=buy_base" target="_blank" rel="noopener">
+        <span class="so-badge">Быстрее</span>
+        <span class="sheet-ico">✈️</span>
+        <b>В Telegram</b>
+        <small>Оплата Stars или ЕРИП прямо в боте. Отчёт придёт в чат через 2 минуты после оплаты.</small>
+        <span class="sheet-go">Открыть бота →</span>
+      </a>
+      <a class="sheet-option" id="sheetSite" href="order.html?plan=base">
+        <span class="sheet-ico">💻</span>
+        <b>На сайте</b>
+        <small>Без Telegram: оставь контакт и оплати через ЕРИП. Свяжусь и пришлю отчёт.</small>
+        <span class="sheet-go">Оформить на сайте →</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script src="script.js?v=20261022a"></script>
 </body>
 </html>

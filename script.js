@@ -104,3 +104,34 @@ document.querySelectorAll('a[href^="#"]').forEach(function (a) {
   upd();
   setInterval(upd, 60000);
 })();
+
+/* ===== «Выбрать» тариф → где оформить: Telegram или сайт ===== */
+(function () {
+  var sheet = document.getElementById("chooseSheet");
+  if (!sheet) return;
+  var PLANS = { base: ["Базовый", "39 BYN"], pro: ["Про", "79 BYN"], vip: ["VIP", "149 BYN"] };
+  var lastFocus = null;
+  function open(plan) {
+    var p = PLANS[plan] || PLANS.base;
+    document.getElementById("sheetPlan").textContent = "Пакет «" + p[0] + "» · " + p[1];
+    document.getElementById("sheetTg").href = BOT_URL + "?start=buy_" + plan;
+    document.getElementById("sheetSite").href = "order.html?plan=" + plan;
+    lastFocus = document.activeElement;
+    sheet.classList.add("open");
+    sheet.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    setTimeout(function () { try { document.getElementById("sheetTg").focus(); } catch (e) {} }, 50);
+  }
+  function close() {
+    sheet.classList.remove("open");
+    sheet.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (lastFocus) { try { lastFocus.focus(); } catch (e) {} }
+  }
+  document.querySelectorAll("[data-choose]").forEach(function (btn) {
+    btn.addEventListener("click", function (e) { e.preventDefault(); open(btn.getAttribute("data-choose")); });
+  });
+  sheet.addEventListener("click", function (e) { if (e.target === sheet || e.target.closest("[data-sheet-close]")) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && sheet.classList.contains("open")) close(); });
+  sheet.querySelectorAll(".sheet-option").forEach(function (a) { a.addEventListener("click", function () { setTimeout(close, 80); }); });
+})();
